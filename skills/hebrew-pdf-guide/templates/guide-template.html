@@ -1,0 +1,687 @@
+<!--
+  Hebrew PDF Guide Template
+  =========================
+
+  USAGE:
+  1. Copy this file to your output folder
+  2. Copy ../assets/peleg.png to the same folder
+  3. Replace all <!-- PLACEHOLDER --> comments with actual content
+  4. Add/remove page divs as needed (each .page has page-break-after: always)
+  5. Render to PDF via Playwright: page.pdf({ format: 'A4', printBackground: true, margin: { top: '0', right: '0', bottom: '0', left: '0' } })
+
+  PLACEHOLDERS:
+  - BADGE_TEXT: Short label for cover badge (e.g. "מדריך התקנה")
+  - COVER_TITLE: Main title, use <br> for line breaks
+  - COVER_SUBTITLE: 2-3 sentences hook
+  - LEARN_ITEM_1 through LEARN_ITEM_4: What they'll learn
+  - SECTION_XX_TITLE: Section heading
+  - SECTION_XX_BODY: Section body paragraphs (can be multiple <p class="body-text">)
+  - PAGE_HEADER_TEXT: Continuation page header text
+  - CODE_BLOCK: Terminal command (remove entire div if not needed)
+  - TIP_TEXT: Tip paragraph (remove if not needed)
+  - CALLOUT_TITLE / CALLOUT_TEXT: Mid-guide CTA (remove if not needed)
+  - INFO_LABEL / INFO_TEXT: Info box (remove if not needed)
+  - CHECKLIST_ITEM_1 through CHECKLIST_ITEM_5: Use case items
+  - INSIGHT_LABEL / INSIGHT_TEXT: Key takeaway
+  - CTA_TITLE / CTA_TEXT: Final CTA (link hardcoded to moadon.io/aiagentschool)
+
+  NOTES:
+  - The h1 has an inline style override for RTL - keep it
+  - Code blocks use direction: ltr - keep it
+  - The CTA link uses direction: ltr - keep it
+  - peleg.png must be in the same folder as this HTML
+  - Section numbers and page numbers must be updated manually when adding/removing pages
+-->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;700&family=Frank+Ruhl+Libre:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: #F5F0E8;
+    color: #2D2A26;
+    line-height: 1.7;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- Page structure ---- */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #F5F0E8;
+    padding: 50px 55px 60px;
+    page-break-after: always;
+    position: relative;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  /* Top bar on continuation pages */
+  .page-header-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: #FF6B00;
+  }
+
+  .page-header-text {
+    font-family: 'Heebo', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: #9A958E;
+    text-align: center;
+    margin-bottom: 30px;
+    direction: ltr;
+  }
+
+  /* Footer */
+  .page-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 55px;
+    right: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #2D2A26;
+    padding-top: 10px;
+  }
+
+  .page-footer .page-num {
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2D2A26;
+    background: #E8E2D8;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  /* ---- Cover Page ---- */
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: #F5F0E8;
+    padding: 70px 55px 60px;
+    page-break-after: always;
+    position: relative;
+  }
+
+  .cover-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .cover-badge .dot {
+    width: 10px;
+    height: 10px;
+    background: #FF6B00;
+    border-radius: 50%;
+  }
+
+  .cover-badge span {
+    font-family: 'Heebo', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #FF6B00;
+    letter-spacing: 2px;
+  }
+
+  .cover h1 {
+    font-family: 'Frank Ruhl Libre', 'Heebo', serif;
+    font-size: 54px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #2D2A26;
+    margin-bottom: 24px;
+    direction: ltr;
+    text-align: left;
+  }
+
+  .cover-subtitle {
+    font-size: 17px;
+    font-weight: 400;
+    color: #5A5550;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+
+  /* What you'll learn box on cover */
+  .learn-box {
+    background: #2D2A26;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 50px;
+    border-right: 5px solid #FF6B00;
+  }
+
+  .learn-box-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .learn-box-header .num {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #FF6B00;
+  }
+
+  .learn-box-header .line {
+    width: 24px;
+    height: 2px;
+    background: #FF6B00;
+  }
+
+  .learn-box-header span:last-child {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #9A958E;
+  }
+
+  .learn-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .learn-box li {
+    font-size: 14px;
+    color: #E8E4DE;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    direction: rtl;
+  }
+
+  .learn-box .check {
+    width: 20px;
+    height: 20px;
+    background: #FF6B00;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ---- Section Headers ---- */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+    direction: rtl;
+  }
+
+  .section-header .num {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #FF6B00;
+    line-height: 1;
+  }
+
+  .section-header .line {
+    width: 28px;
+    height: 2px;
+    background: #FF6B00;
+  }
+
+  .section-header h2 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #2D2A26;
+    letter-spacing: 0.5px;
+  }
+
+  .section-rule {
+    width: 100%;
+    height: 3px;
+    background: #FF6B00;
+    margin-bottom: 28px;
+  }
+
+  /* ---- Body text ---- */
+  .body-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: #3A3632;
+    line-height: 1.85;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+
+  .body-text strong {
+    font-weight: 700;
+    color: #2D2A26;
+  }
+
+  /* ---- Step headers ---- */
+  .step-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #2D2A26;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 3px solid #FF6B00;
+    display: inline-block;
+  }
+
+  /* ---- Callout boxes (orange) ---- */
+  .callout-box {
+    background: #FF6B00;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 28px 0;
+    border-right: 5px solid #CC5500;
+    position: relative;
+    overflow: visible;
+  }
+
+  .callout-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 4px;
+    display: inline-block;
+    background: rgba(0,0,0,0.15);
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+
+  .callout-box h3 {
+    font-family: 'Heebo', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .callout-box p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.75;
+  }
+
+  .callout-box .link {
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    padding-bottom: 2px;
+    margin-top: 12px;
+    display: inline-block;
+    direction: ltr;
+  }
+
+  /* ---- Info box (lighter) ---- */
+  .info-box {
+    background: rgba(255,107,0,0.08);
+    border: 1px solid rgba(255,107,0,0.15);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .info-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    background: #FF6B00;
+    padding: 3px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .info-box p {
+    font-size: 14px;
+    color: #3A3632;
+    line-height: 1.8;
+  }
+
+  /* ---- Checklist ---- */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+
+  .checklist li {
+    font-size: 14px;
+    color: #3A3632;
+    padding: 8px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+    direction: rtl;
+  }
+
+  .checklist .bullet {
+    width: 10px;
+    height: 10px;
+    background: #FF6B00;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  /* ---- Code block ---- */
+  .code-block {
+    background: #2D2A26;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 16px 0 24px;
+    direction: ltr;
+  }
+
+  .code-block pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #E8E4DE;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  .code-block .prompt { color: #FF6B00; }
+  .code-block .flag { color: #9A958E; }
+  .code-block .string { color: #98C379; }
+
+  /* ---- Tip ---- */
+  .tip {
+    font-size: 13px;
+    color: #7A756E;
+    font-style: italic;
+    margin: 12px 0;
+    padding-right: 16px;
+    border-right: 2px solid #DDD8D2;
+  }
+
+  /* ---- Key insight box ---- */
+  .insight-box {
+    background: rgba(255,107,0,0.06);
+    border: 1px solid rgba(255,107,0,0.12);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .insight-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    background: #FF6B00;
+    padding: 3px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .insight-box p {
+    font-size: 14px;
+    color: #3A3632;
+    line-height: 1.8;
+  }
+
+  /* Sub-section title */
+  h3.sub-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #2D2A26;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 3px solid #FF6B00;
+    display: inline-block;
+  }
+
+  .spacer { height: 20px; }
+
+  /* Author photo in CTA */
+  .cta-layout {
+    display: flex;
+    direction: rtl;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-content {
+    flex: 1;
+  }
+  .cta-photo {
+    width: 180px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    margin-bottom: -28px;
+  }
+  .cta-photo img {
+    width: 180px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="cover">
+  <div class="cover-badge">
+    <div class="dot"></div>
+    <span><!-- BADGE_TEXT --></span>
+  </div>
+
+  <h1 style="direction: rtl; text-align: right;"><!-- COVER_TITLE --></h1>
+
+  <p class="cover-subtitle">
+    <!-- COVER_SUBTITLE -->
+  </p>
+
+  <div class="learn-box">
+    <div class="learn-box-header">
+      <span class="num">01</span>
+      <span class="line"></span>
+      <span>מה תלמדו</span>
+    </div>
+    <ul>
+      <li><span class="check">✓</span> <!-- LEARN_ITEM_1 --></li>
+      <li><span class="check">✓</span> <!-- LEARN_ITEM_2 --></li>
+      <li><span class="check">✓</span> <!-- LEARN_ITEM_3 --></li>
+      <li><span class="check">✓</span> <!-- LEARN_ITEM_4 --></li>
+    </ul>
+  </div>
+
+  <!-- Section 01 -->
+  <div class="section-header">
+    <span class="num">01</span>
+    <span class="line"></span>
+    <h2><!-- SECTION_01_TITLE --></h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    <!-- SECTION_01_BODY -->
+  </p>
+
+  <div class="page-footer">
+    <div></div>
+    <div class="page-num">01</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2: CONTENT ==================== -->
+<div class="page">
+  <div class="page-header-bar"></div>
+  <div class="page-header-text"><!-- PAGE_HEADER_TEXT --></div>
+
+  <div class="section-header">
+    <span class="num">02</span>
+    <span class="line"></span>
+    <h2><!-- SECTION_02_TITLE --></h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <h3 class="step-title"><!-- STEP_1_TITLE --></h3>
+  <p class="body-text">
+    <!-- STEP_1_BODY -->
+  </p>
+
+  <div class="spacer"></div>
+
+  <h3 class="step-title"><!-- STEP_2_TITLE --></h3>
+  <p class="body-text">
+    <!-- STEP_2_BODY -->
+  </p>
+
+  <!-- Optional: Code block (remove if not needed) -->
+  <div class="code-block">
+    <pre><!-- CODE_BLOCK --></pre>
+  </div>
+
+  <!-- Optional: Tip (remove if not needed) -->
+  <p class="tip"><!-- TIP_TEXT --></p>
+
+  <!-- Optional: Mid-guide CTA (remove if not needed) -->
+  <div class="callout-box">
+    <h3><!-- CALLOUT_TITLE --></h3>
+    <p><!-- CALLOUT_TEXT --></p>
+    <div class="link">moadon.io/aiagentschool</div>
+  </div>
+
+  <!-- Optional: Info box (remove if not needed) -->
+  <div class="info-box">
+    <div class="info-box-label"><!-- INFO_LABEL --></div>
+    <p><!-- INFO_TEXT --></p>
+  </div>
+
+  <div class="page-footer">
+    <div></div>
+    <div class="page-num">02</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3: CONTENT ==================== -->
+<div class="page">
+  <div class="page-header-bar"></div>
+  <div class="page-header-text"><!-- PAGE_HEADER_TEXT --></div>
+
+  <div class="section-header">
+    <span class="num">03</span>
+    <span class="line"></span>
+    <h2><!-- SECTION_03_TITLE --></h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <h3 class="sub-title"><!-- SUB_TITLE_A --></h3>
+  <p class="body-text">
+    <!-- SUB_BODY_A -->
+  </p>
+
+  <div class="spacer"></div>
+
+  <h3 class="sub-title"><!-- SUB_TITLE_B --></h3>
+  <p class="body-text">
+    <!-- SUB_BODY_B -->
+  </p>
+
+  <div class="spacer"></div>
+
+  <!-- Section 04 (second section on same page) -->
+  <div class="section-header">
+    <span class="num">04</span>
+    <span class="line"></span>
+    <h2><!-- SECTION_04_TITLE --></h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    <!-- SECTION_04_BODY -->
+  </p>
+
+  <div class="page-footer">
+    <div></div>
+    <div class="page-num">03</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4: LAST PAGE ==================== -->
+<div class="page">
+  <div class="page-header-bar"></div>
+  <div class="page-header-text"><!-- PAGE_HEADER_TEXT --></div>
+
+  <div class="section-header">
+    <span class="num">05</span>
+    <span class="line"></span>
+    <h2><!-- SECTION_05_TITLE --></h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <ul class="checklist">
+    <li><span class="bullet"></span> <!-- CHECKLIST_ITEM_1 --></li>
+    <li><span class="bullet"></span> <!-- CHECKLIST_ITEM_2 --></li>
+    <li><span class="bullet"></span> <!-- CHECKLIST_ITEM_3 --></li>
+    <li><span class="bullet"></span> <!-- CHECKLIST_ITEM_4 --></li>
+    <li><span class="bullet"></span> <!-- CHECKLIST_ITEM_5 --></li>
+  </ul>
+
+  <!-- Insight Box -->
+  <div class="insight-box">
+    <div class="insight-box-label"><!-- INSIGHT_LABEL --></div>
+    <p>
+      <!-- INSIGHT_TEXT -->
+    </p>
+  </div>
+
+  <!-- Final CTA with Photo -->
+  <div class="callout-box">
+    <div class="cta-layout">
+      <div class="cta-content">
+        <h3><!-- CTA_TITLE --></h3>
+        <p>
+          <!-- CTA_TEXT -->
+        </p>
+        <div class="link">moadon.io/aiagentschool</div>
+      </div>
+      <div class="cta-photo">
+        <img src="peleg.png" alt="פלג דרור">
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div></div>
+    <div class="page-num">04</div>
+  </div>
+</div>
+
+</body>
+</html>

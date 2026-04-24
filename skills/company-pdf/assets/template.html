@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ============================================================
+     TEMPLATE CONFIG - Edit these values for each new client
+     ============================================================
+
+     COMPANY_NAME:        "HiBob"
+     COMPANY_LOGO:        "hibob-logo.svg"          (place file in same folder)
+     TEAM_TITLE:          "Analytics Team"
+     PLATFORM_NAME:       "Bob"                      (their product name)
+     DATABASE:            "Snowflake"
+     BI_TOOL:             "Tableau"
+     DOCS_TOOL:           "Confluence or SharePoint"
+     DATA_DOMAIN:         "people operations"        (e.g. "finance", "operations", "marketing")
+     DATA_SENSITIVITY:    "employee PII, compensation data, and performance records"
+     REGULATIONS_REF:     "HiBob's latest regulations"
+
+     EXAMPLE_BUSINESS_LOGIC_1:  "active employee" meaning not on leave and not in offboarding
+     EXAMPLE_BUSINESS_LOGIC_2:  "headcount" meaning FTE count excluding contractors
+     EXAMPLE_CONTEXT_A:   "Compensation analytics gets its own context with salary bands"
+     EXAMPLE_CONTEXT_B:   "Retention analysis gets different business definitions"
+     EXAMPLE_SKILL:       "/weekly-report"
+     EXAMPLE_SKILL_TASKS: "HR KPI queries, Tableau-ready exports, view documentation"
+     EXAMPLE_QUESTION:    "what are the total expenses for 2026?"
+     EXAMPLE_PRACTICAL:   "Show me attrition by department this quarter vs. last quarter, flag teams above 15%."
+     EXAMPLE_PRACTICAL_DETAIL: "Claude writes the SQL, pulls the data from Snowflake via MCP, compares the numbers, flags the outliers, and gives you a summary."
+     EXAMPLE_BIZ_QUESTION: "what's our attrition rate in R&D this quarter?"
+     EXAMPLE_BIZ_DECISIONS: "voluntary vs involuntary, which employee table to use, whether to include contractors, what date range 'this quarter' means, and how to handle employees who transferred between departments"
+     EXAMPLE_ANALYSES:    "complex HR analyses"
+
+     WORKSHOP_FORMAT:     "Full-day workshop"
+     PRICE_USD:           "$8,000"
+     PRICE_LOCAL:         "₪24,875"
+     PRICE_LOCAL_SYMBOL:  "≈"
+
+     INSTRUCTOR_BIO:      (see line ~705)
+     INSTRUCTOR_EMAIL:    "hello@pelegdror.com"
+     INSTRUCTOR_PHOTO:    "peleg.png"                (place file in same folder)
+
+     ============================================================ -->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:wght@400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4; margin: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F5F0E8;
+    color: #2D2A26;
+    line-height: 1.7;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- Page structure ---- */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #F5F0E8;
+    padding: 50px 55px 60px;
+    page-break-after: always;
+    position: relative;
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  .page-header-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: #FF6B00;
+  }
+
+  .page-header-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: #9A958E;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+
+  .page-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 55px;
+    right: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #2D2A26;
+    padding-top: 10px;
+  }
+
+  .page-footer .page-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2D2A26;
+    background: #E8E2D8;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+
+  .page-footer .footer-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #9A958E;
+    text-transform: uppercase;
+  }
+
+  /* ---- Cover Page ---- */
+  .cover {
+    width: 210mm;
+    min-height: 297mm;
+    background: #F5F0E8;
+    padding: 60px 55px 60px;
+    page-break-after: always;
+    position: relative;
+  }
+
+  .cover-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .cover-badge .dot {
+    width: 10px;
+    height: 10px;
+    background: #FF6B00;
+    border-radius: 50%;
+  }
+
+  .cover-badge span {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #FF6B00;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #2D2A26;
+    margin-bottom: 8px;
+  }
+
+  .cover .cover-h1-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #5A5550;
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+
+  .cover-subtitle {
+    font-size: 15px;
+    font-weight: 400;
+    color: #5A5550;
+    line-height: 1.85;
+    max-width: 500px;
+    margin-bottom: 36px;
+  }
+
+  .learn-box {
+    background: #2D2A26;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    border-left: 5px solid #FF6B00;
+  }
+
+  .learn-box-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .learn-box-header .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: #FF6B00;
+  }
+
+  .learn-box-header .line {
+    width: 24px;
+    height: 2px;
+    background: #FF6B00;
+  }
+
+  .learn-box-header span:last-child {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #9A958E;
+    text-transform: uppercase;
+  }
+
+  .learn-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .learn-box li {
+    font-size: 14px;
+    color: #E8E4DE;
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .learn-box .check {
+    width: 20px;
+    height: 20px;
+    background: #FF6B00;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* ---- Section Headers ---- */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 6px;
+  }
+
+  .section-header .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: #FF6B00;
+    line-height: 1;
+  }
+
+  .section-header .line {
+    width: 28px;
+    height: 2px;
+    background: #FF6B00;
+  }
+
+  .section-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: #2D2A26;
+    letter-spacing: -0.3px;
+  }
+
+  .section-rule {
+    width: 100%;
+    height: 3px;
+    background: #FF6B00;
+    margin-bottom: 24px;
+  }
+
+  .body-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #3A3632;
+    line-height: 1.85;
+    margin-bottom: 18px;
+    text-align: left;
+  }
+
+  .body-text strong {
+    font-weight: 700;
+    color: #2D2A26;
+  }
+
+  h3.sub-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #2D2A26;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 3px solid #FF6B00;
+    display: inline-block;
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #2D2A26;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 3px solid #FF6B00;
+    display: inline-block;
+  }
+
+  .callout-box {
+    background: #FF6B00;
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin: 24px 0;
+    border-left: 5px solid #CC5500;
+    position: relative;
+    overflow: visible;
+  }
+
+  .callout-box h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .callout-box p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.75;
+  }
+
+  .info-box {
+    background: rgba(255,107,0,0.08);
+    border: 1px solid rgba(255,107,0,0.15);
+    border-radius: 8px;
+    padding: 22px 26px;
+    margin: 20px 0;
+  }
+
+  .info-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    background: #FF6B00;
+    padding: 3px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .info-box p {
+    font-size: 13px;
+    color: #3A3632;
+    line-height: 1.8;
+  }
+
+  .insight-box {
+    background: rgba(255,107,0,0.06);
+    border: 1px solid rgba(255,107,0,0.12);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .insight-box-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    background: #FF6B00;
+    padding: 3px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .insight-box p {
+    font-size: 14px;
+    color: #3A3632;
+    line-height: 1.8;
+  }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+  }
+
+  .checklist li {
+    font-size: 14px;
+    color: #3A3632;
+    padding: 7px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.6;
+  }
+
+  .checklist .bullet {
+    width: 10px;
+    height: 10px;
+    background: #FF6B00;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .code-block {
+    background: #2D2A26;
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 14px 0 20px;
+  }
+
+  .code-block pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: #E8E4DE;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  .code-block .prompt { color: #FF6B00; }
+  .code-block .flag { color: #9A958E; }
+  .code-block .string { color: #98C379; }
+  .code-block .comment { color: #7A756E; }
+
+  .tip {
+    font-size: 13px;
+    color: #7A756E;
+    font-style: italic;
+    margin: 10px 0;
+    padding-left: 16px;
+    border-left: 2px solid #DDD8D2;
+  }
+
+  .spacer { height: 16px; }
+
+  .cta-layout {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cta-content {
+    flex: 1;
+  }
+  .cta-photo {
+    width: 160px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    margin-bottom: -28px;
+  }
+  .cta-photo img {
+    width: 160px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  }
+
+  .module-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .module-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px 22px;
+    border-top: 3px solid #FF6B00;
+  }
+
+  .module-card .module-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: #FF6B00;
+    margin-bottom: 4px;
+  }
+
+  .module-card h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #2D2A26;
+    margin-bottom: 8px;
+  }
+
+  .module-card p {
+    font-size: 12px;
+    color: #5A5550;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="cover">
+  <div class="cover-badge">
+    <div class="dot"></div>
+    <span>Curriculum</span>
+  </div>
+
+  <h1>Claude Code<br>Mastery</h1>
+  <!-- TEMPLATE: Replace logo src, alt, and team title per client -->
+  <p class="cover-h1-sub"><img src="{{COMPANY_LOGO}}" alt="{{COMPANY_NAME}}" style="height: 28px; vertical-align: middle; margin-right: 8px;">For {{COMPANY_NAME}}'s {{TEAM_TITLE}}</p>
+
+  <!-- TEMPLATE: Rewrite this paragraph per client. Mention their platform, database, BI tool, and data domain -->
+  <p class="cover-subtitle">
+    Your team manages employee data in {{PLATFORM_NAME}}, writes {{DATABASE}} queries daily, and builds {{BI_TOOL}} dashboards for {{DATA_DOMAIN}}. This curriculum teaches you Claude Code from the ground up - not as a chatbot, but as a full engineering environment that lives in your terminal and already understands your data.
+  </p>
+
+  <div class="learn-box">
+    <div class="learn-box-header">
+      <span class="num">00</span>
+      <span class="line"></span>
+      <span>What you'll learn</span>
+    </div>
+    <ul>
+      <!-- TEMPLATE: Adapt learn items to client's database and domain -->
+      <li><span class="check">&#10003;</span> Set up Claude Code with persistent context about your {{DATABASE}} schema and data definitions</li>
+      <li><span class="check">&#10003;</span> Build custom Skills and learn about Claude Code channels (MCP)</li>
+      <li><span class="check">&#10003;</span> Use agents to automate multi-step {{DATA_DOMAIN}} workflows</li>
+      <li><span class="check">&#10003;</span> Understand security boundaries - critical when working with {{DATA_SENSITIVITY}}</li>
+    </ul>
+  </div>
+
+  <div class="section-header">
+    <span class="num">01</span>
+    <span class="line"></span>
+    <h2>The CLI Foundation</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    Claude Code isn't a chat window. It's an AI agent running inside your terminal with direct access to your file system, your project structure, and your code. It reads files, writes files, runs commands, and chains complex operations together - all from a single prompt.
+  </p>
+  <p class="body-text">
+    We start here because everything else builds on it. You'll install Claude Code, understand the agent loop (how it decides what to do next), and learn the folder structure that makes it all work: the <strong>.claude/</strong> directory, settings files, and how the tool manages permissions.
+  </p>
+
+  <div class="page-footer">
+    <div class="footer-label">Claude Code Mastery Curriculum</div>
+    <div class="page-num">01</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2 ==================== -->
+<div class="page">
+  <div class="page-header-bar"></div>
+  <div class="page-header-text">Claude Code Mastery - Curriculum</div>
+
+  <div class="section-header">
+    <span class="num">02</span>
+    <span class="line"></span>
+    <h2>CLAUDE.md & Project Context</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    The most important file in your setup. <strong>CLAUDE.md</strong> tells Claude Code who you are, what your project looks like, and how you want it to behave. Without it, Claude starts every conversation from zero. With it, Claude already knows your table names, naming conventions, and business rules before you type a word.
+  </p>
+
+  <h3 class="sub-title">What goes in CLAUDE.md</h3>
+  <!-- TEMPLATE: Replace business logic examples with client-specific ones -->
+  <p class="body-text">
+    Your {{DATABASE}} schema structure. Which tables are facts, which are dimensions. Business logic that isn't obvious from column names - like {{EXAMPLE_BUSINESS_LOGIC_1}}, or {{EXAMPLE_BUSINESS_LOGIC_2}}.
+  </p>
+
+  <h3 class="sub-title">Layered context</h3>
+  <!-- TEMPLATE: Replace context examples with client-specific domains -->
+  <p class="body-text">
+    You can stack multiple CLAUDE.md files: a global one, a project-level one, and subdirectory-level ones. {{EXAMPLE_CONTEXT_A}}. {{EXAMPLE_CONTEXT_B}}. Claude picks up the right context based on where you're working.
+  </p>
+
+  <div class="spacer"></div>
+
+  <div class="section-header">
+    <span class="num">03</span>
+    <span class="line"></span>
+    <h2>Skills & Slash Commands</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <!-- TEMPLATE: Replace skill name and task examples per client -->
+  <p class="body-text">
+    Skills are reusable instruction sets triggered with a slash command. Type <strong>{{EXAMPLE_SKILL}}</strong> and Claude already knows which tables to query, what format to use, and where to save it. You'll build your own: {{EXAMPLE_SKILL_TASKS}}. Plain markdown files, no coding required.
+  </p>
+
+
+  <div class="page-footer">
+    <div class="footer-label">Claude Code Mastery Curriculum</div>
+    <div class="page-num">02</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3 ==================== -->
+<div class="page">
+  <div class="page-header-bar"></div>
+  <div class="page-header-text">Claude Code Mastery - Curriculum</div>
+
+  <div class="section-header">
+    <span class="num">04</span>
+    <span class="line"></span>
+    <h2>Channels (MCP Servers)</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    MCP (Model Context Protocol) is how Claude Code connects to external channels. Out of the box, Claude Code reads and writes local files. With MCP, it can talk to databases, APIs, documentation sites, and anything else that exposes an MCP interface.
+  </p>
+
+  <h3 class="sub-title">What this means for analysts</h3>
+  <!-- TEMPLATE: Replace database name, example question, and docs tool -->
+  <p class="body-text">
+    {{DATABASE}} has its own official MCP server - Claude Code connects directly to your database. Ask in plain English, like <strong>"{{EXAMPLE_QUESTION}}"</strong> - Claude writes the query, runs it against live {{DATABASE}} data, and gives you the answer. No copy-pasting. Same for documentation: point Claude at {{DOCS_TOOL}} through MCP and it pulls context automatically.
+  </p>
+
+  <h3 class="sub-title">Setting up a channel</h3>
+  <!-- TEMPLATE: Replace database, docs tool references -->
+  <p class="body-text">
+    Channels are configured in a JSON file - server type, connection details, and exposed tools. We'll connect a {{DATABASE}} MCP channel, a filesystem channel for shared reports, and a documentation channel for {{DOCS_TOOL}}. Everything respects your existing {{DATABASE}} roles and permissions - no new access is created, Claude works within the same guardrails your team already has.
+  </p>
+
+  <div class="section-header">
+    <span class="num">05</span>
+    <span class="line"></span>
+    <h2>Agents & Multi-step Workflows</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    When a task has more than one step, Claude Code doesn't just answer - it plans. It breaks the work into stages, checks results, and moves to the next step. This is the agent loop, and it's what separates Claude Code from a regular AI chat.
+  </p>
+  <p class="body-text">
+    You'll learn <strong>subagents</strong> for parallel research (run three queries at once), <strong>plan mode</strong> to review Claude's approach before it executes, and <strong>Hooks</strong> for automatic actions like validating every SQL file Claude generates. We'll also cover Anthropic's <strong>model family</strong> - Opus, Sonnet, and Haiku - so you know when to use which for cost, speed, and quality.
+  </p>
+
+  <!-- TEMPLATE: Replace practical example with client-specific scenario -->
+  <div class="info-box" style="margin: 14px 0; padding: 16px 22px;">
+    <div class="info-box-label">Practical example</div>
+    <p>
+      "{{EXAMPLE_PRACTICAL}}" - One prompt. {{EXAMPLE_PRACTICAL_DETAIL}} The queries run through your existing {{DATABASE}} permissions.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-label">Claude Code Mastery Curriculum</div>
+    <div class="page-num">03</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4 ==================== -->
+<div class="page">
+  <div class="page-header-bar"></div>
+  <div class="page-header-text">Claude Code Mastery - Curriculum</div>
+
+  <div class="section-header">
+    <span class="num">06</span>
+    <span class="line"></span>
+    <h2>Applied: SQL & Analytics Workflows</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <!-- TEMPLATE: Replace company name, database, BI tool -->
+  <p class="body-text">
+    Everything from modules 01-05 comes together here. This is where you take your actual daily work at {{COMPANY_NAME}} and run it through Claude Code. Not hypothetical examples - your real {{DATABASE}} tables, your real data questions, your real {{BI_TOOL}} dashboards.
+  </p>
+
+  <h3 class="sub-title">From business question to query</h3>
+  <!-- TEMPLATE: Replace the example question and hidden decisions per client domain -->
+  <p class="body-text">
+    An HR lead asks "{{EXAMPLE_BIZ_QUESTION}}" That question hides five decisions: {{EXAMPLE_BIZ_DECISIONS}}. With your CLAUDE.md loaded, Claude Code already knows the answers to most of these.
+  </p>
+
+  <h3 class="sub-title">Query optimization</h3>
+  <!-- TEMPLATE: Replace database-specific optimization references if not Snowflake -->
+  <p class="body-text">
+    Paste a slow query. Claude reads the {{DATABASE}} execution plan, identifies the bottleneck - a missing cluster key, a full table scan, an unnecessary subquery - and rewrites it. You'll see the before and after, with an explanation of what changed and why.
+  </p>
+
+  <h3 class="sub-title">Documentation and handoff</h3>
+  <p class="body-text">
+    Point Claude at a folder of SQL views and it documents them - what each view calculates, which tables it joins, what filters it applies. Then it goes further: suggests new views based on patterns it finds in the data, surfaces insights you might have missed, and builds on your existing work.
+  </p>
+
+  <div class="spacer"></div>
+
+  <!-- TEMPLATE: Replace data sensitivity and regulations reference -->
+  <div class="callout-box">
+    <h3>Permissions & Security</h3>
+    <p>
+      Claude Code runs locally on your machine. Your prompts, your files, and your query results stay on your laptop unless you explicitly push them somewhere. This matters when you're working with {{DATA_SENSITIVITY}}. The permission system lets you control exactly what Claude can and can't access - read-only mode, no external network calls, or full access. Every employee connects with their own {{DATABASE}} credentials and permissions. We'll configure this for {{COMPANY_NAME}}'s security requirements, according to {{REGULATIONS_REF}}.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-label">Claude Code Mastery Curriculum</div>
+    <div class="page-num">04</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 5: LAST PAGE ==================== -->
+<div class="page">
+  <div class="page-header-bar"></div>
+  <div class="page-header-text">Claude Code Mastery - Curriculum</div>
+
+  <div class="section-header">
+    <span class="num">07</span>
+    <span class="line"></span>
+    <h2>What You Walk Away With</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <!-- TEMPLATE: Replace database and domain references in checklist -->
+  <ul class="checklist">
+    <li><span class="bullet"></span> A configured Claude Code environment with your {{DATABASE}} schema in CLAUDE.md</li>
+    <li><span class="bullet"></span> Custom Skills built for your recurring data and reporting tasks</li>
+    <li><span class="bullet"></span> A working understanding of channels (MCP) and how to connect external tools</li>
+    <li><span class="bullet"></span> A working Hooks setup that validates every query Claude generates</li>
+    <li><span class="bullet"></span> A clear understanding of how agents plan and chain {{EXAMPLE_ANALYSES}}</li>
+  </ul>
+
+  <!-- TEMPLATE: Replace pricing per client -->
+  <div style="background: #2D2A26; border-radius: 8px; padding: 18px 28px; margin: 16px 0; display: flex; align-items: center; justify-content: space-between;">
+    <div>
+      <span style="font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #FF6B00;">{{PRICE_USD}}</span>
+      <span style="font-size: 13px; color: #9A958E; margin-left: 8px;">+ VAT</span>
+      <span style="font-size: 13px; color: #7A756E; margin-left: 12px;">{{PRICE_LOCAL_SYMBOL}}{{PRICE_LOCAL}} + VAT</span>
+    </div>
+    <div style="text-align: right;">
+      <div style="font-family: 'Inter', sans-serif; font-size: 13px; color: #E8E4DE;">{{WORKSHOP_FORMAT}}</div>
+    </div>
+  </div>
+
+  <!-- TEMPLATE: Update instructor bio and photo per engagement -->
+  <div class="callout-box" style="margin: 14px 0; padding: 22px 28px;">
+    <div class="cta-layout">
+      <div class="cta-content">
+        <h3>Your Instructor</h3>
+        <p>
+          {{INSTRUCTOR_BIO}}
+        </p>
+        <div style="margin-top: 10px; font-size: 13px; color: rgba(255,255,255,0.9);">Contact: <span style="border-bottom: 1px solid rgba(255,255,255,0.5);">{{INSTRUCTOR_EMAIL}}</span></div>
+      </div>
+      <div class="cta-photo">
+        <img src="{{INSTRUCTOR_PHOTO}}" alt="Peleg Dror">
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <div class="footer-label">Claude Code Mastery Curriculum</div>
+    <div class="page-num">05</div>
+  </div>
+</div>
+
+</body>
+</html>

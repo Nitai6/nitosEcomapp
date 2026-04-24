@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
+
+        @page {
+            size: A4;
+            margin: 2cm 2.5cm;
+            @bottom-center {
+                content: counter(page) " / " counter(pages);
+                font-family: 'Heebo', sans-serif;
+                font-size: 10px;
+                color: #718096;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #2d3748;
+            direction: rtl;
+            background: #ffffff;
+        }
+
+        .header-banner {
+            background: #1a365d;
+            color: #ffffff;
+            padding: 32px 36px;
+            margin: -2cm -2.5cm 0 -2.5cm;
+            width: calc(100% + 5cm);
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .workshop-title {
+            font-size: 30px;
+            font-weight: 900;
+            margin-top: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .workshop-subtitle {
+            font-size: 15px;
+            font-weight: 300;
+            margin-top: 8px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        section {
+            margin-top: 28px;
+            page-break-inside: avoid;
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 20px;
+            color: #1a365d;
+            border-bottom: 2px solid #1a365d;
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+        }
+
+        p { margin-bottom: 12px; }
+
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .info-item {
+            background: #f7fafc;
+            border-right: 3px solid #e68a2e;
+            padding: 10px 16px;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .info-item .label {
+            font-size: 12px;
+            color: #718096;
+            margin-bottom: 2px;
+        }
+
+        .info-item .value {
+            font-weight: 700;
+            color: #1a365d;
+            font-size: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            margin-bottom: 16px;
+        }
+
+        th {
+            background: #1a365d;
+            color: #ffffff;
+            font-weight: 700;
+            text-align: right;
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: right;
+            font-size: 15px;
+        }
+
+        tr:nth-child(even) { background: #f7fafc; }
+
+        .schedule-time {
+            font-weight: 700;
+            color: #e68a2e;
+            white-space: nowrap;
+            font-size: 16px;
+        }
+
+        .schedule-title { font-weight: 700; }
+
+        .learning-block {
+            margin-bottom: 16px;
+            padding: 14px 16px;
+            background: #f7fafc;
+            border-right: 3px solid #e68a2e;
+        }
+
+        .learning-block h3 {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a365d;
+            margin-bottom: 6px;
+        }
+
+        .learning-block .time-badge {
+            display: inline-block;
+            background: #e68a2e;
+            color: white;
+            padding: 1px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .learning-block p {
+            margin-bottom: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .bonus-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .bonus-item:last-child { border-bottom: none; }
+
+        .bonus-item .bonus-title {
+            font-weight: 700;
+            color: #1a365d;
+            font-size: 15px;
+        }
+
+        .bonus-item .bonus-desc {
+            font-size: 14px;
+            color: #4a5568;
+            margin-top: 2px;
+        }
+
+        .requirement-item {
+            padding: 10px 0;
+            margin-right: 0;
+        }
+
+        .requirement-num {
+            background: #1a365d;
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-block;
+            text-align: center;
+            line-height: 22px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .note-box {
+            background: #fffbeb;
+            border-right: 3px solid #e68a2e;
+            padding: 12px 16px;
+            font-size: 14px;
+            margin-top: 14px;
+        }
+
+        .pricing-box {
+            background: #f7fafc;
+            border: 2px solid #1a365d;
+            padding: 28px;
+            text-align: center;
+            margin: 16px 0;
+        }
+
+        .pricing-box .price {
+            font-size: 40px;
+            font-weight: 900;
+            color: #1a365d;
+        }
+
+        .pricing-box .price-label {
+            font-size: 14px;
+            color: #718096;
+            margin-top: 4px;
+        }
+
+        .pricing-box .price-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: #e68a2e;
+            margin-top: 10px;
+        }
+
+        .pricing-details {
+            font-size: 14px;
+            color: #4a5568;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        .validity {
+            background: #f7fafc;
+            padding: 16px 20px;
+            border-radius: 4px;
+            border-right: 4px solid #1a365d;
+            font-weight: 700;
+        }
+
+        .signature {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header-banner">
+        <div class="header-meta">
+            <span>{{ proposal_number }}</span>
+            <span>{{ date }}</span>
+        </div>
+        <div class="workshop-title">{{ workshop_name }}</div>
+        <div class="workshop-subtitle">{{ workshop_subtitle }}</div>
+    </div>
+
+    <!-- Quick Info -->
+    <section>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="label">תאריך</div>
+                <div class="value">{{ day }}, {{ workshop_date }}</div>
+            </div>
+            <div class="info-item">
+                <div class="label">שעות</div>
+                <div class="value">{{ time }}</div>
+            </div>
+            <div class="info-item">
+                <div class="label">מיקום</div>
+                <div class="value">{{ location }}</div>
+            </div>
+            <div class="info-item">
+                <div class="label">משתתפים</div>
+                <div class="value">עד {{ max_participants }} בלבד</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- פתיח -->
+    <section>
+        <h2>פתיח</h2>
+        <p>{{ intro_text }}</p>
+    </section>
+
+    <!-- לוח זמנים -->
+    <section>
+        <h2>לוח זמנים</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>שעה</th>
+                    <th>נושא</th>
+                    <th>פירוט</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in schedule %}
+                <tr>
+                    <td class="schedule-time">{{ item.time }}</td>
+                    <td class="schedule-title">{{ item.title }}</td>
+                    <td>{{ item.description }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- מה נלמד -->
+    <section>
+        <h2>מה נלמד בסדנה</h2>
+        {% for block in learning_blocks %}
+        <div class="learning-block">
+            <h3>
+                <span class="time-badge">{{ block.time }}</span>
+                {{ block.title }}
+            </h3>
+            <p>{{ block.description }}</p>
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- מה מקבלים -->
+    <section style="page-break-before: always;">
+        <h2>מה מקבלים מעבר לסדנה</h2>
+        {% for bonus in bonuses %}
+        <div class="bonus-item">
+            <div class="bonus-title">{{ bonus.title }}</div>
+            <div class="bonus-desc">{{ bonus.description }}</div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <!-- דרישות -->
+    <section>
+        <h2>דרישות מקדימות</h2>
+        {% for req in requirements %}
+        <div class="requirement-item">
+            <span class="requirement-num">{{ loop.index }}</span>
+            <span>{{ req }}</span>
+        </div>
+        {% endfor %}
+        {% if requirements_note %}
+        <div class="note-box">{{ requirements_note }}</div>
+        {% endif %}
+    </section>
+
+    <!-- תמחור -->
+    <section>
+        <h2>תמחור</h2>
+        <div class="pricing-box">
+            <div class="price">{{ "{:,}".format(price_per_person) }} ש"ח</div>
+            <div class="price-label">למשתתף, לפני מע"מ</div>
+            <div class="price-total">כולל מע"מ (18%): {{ "{:,}".format(total_per_person) }} ש"ח</div>
+        </div>
+        <p class="pricing-details">{{ pricing_text }}</p>
+    </section>
+
+    <!-- תנאי תשלום -->
+    <section>
+        <h2>תנאי תשלום</h2>
+        <p>{{ payment_text }}</p>
+    </section>
+
+    <!-- הערות -->
+    {% if notes_text %}
+    <section>
+        <h2>לפני שנפגשים</h2>
+        <p>{{ notes_text }}</p>
+    </section>
+    {% endif %}
+
+    <!-- תוקף -->
+    <section>
+        <div class="validity">הצעה זו תקפה עד לתאריך {{ validity_date }}</div>
+    </section>
+
+    <!-- חתימה -->
+    <div class="signature">{{ signature }}</div>
+
+</body>
+</html>

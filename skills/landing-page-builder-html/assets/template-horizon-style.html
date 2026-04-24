@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הדרכה במתנה,אביב מלכה | איקומרס</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            direction: rtl;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #FDFDFD;
+            color: #040404;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== CTA BUTTON (Horizon exact) ===== */
+        .cta-btn {
+            display: inline-block;
+            background-image: linear-gradient(50deg, #E6A210, #FFFB84, #E6A210);
+            border: 1px solid #a55d07;
+            border-radius: 9px;
+            padding: 14px 40px;
+            font-size: 22px;
+            font-weight: 900;
+            font-family: 'Heebo', sans-serif;
+            color: #000000;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+            z-index: 1;
+            transition: transform 0.2s;
+        }
+        .cta-btn span {
+            position: relative;
+            z-index: 2;
+        }
+        .cta-btn::before {
+            content: '';
+            display: block;
+            background-color: white;
+            width: 360px;
+            height: 360px;
+            position: absolute;
+            border-radius: 100%;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%) scale(0);
+            z-index: 0;
+            transition: 0.3s ease all;
+            opacity: 0.15;
+        }
+        .cta-btn:hover::before {
+            transform: translate(50%, -50%) scale(1);
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-btn-secondary {
+            display: inline-block;
+            background-image: linear-gradient(50deg, #83ddec, #4f858e, #83ddec);
+            border: 1px solid #3a6a72;
+            border-radius: 9px;
+            padding: 12px 32px;
+            font-size: 18px;
+            font-weight: 700;
+            font-family: 'Heebo', sans-serif;
+            color: #ffffff;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* ===== SECTION 1: RED ANNOUNCEMENT BAR ===== */
+        .red-bar {
+            background: #AD0000;
+            border-bottom: 3px solid #8a0000;
+            padding: 14px 0;
+            text-align: center;
+            color: #ffffff;
+        }
+        .red-bar p {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .red-bar .countdown-label-text {
+            font-size: 15px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+        .red-bar .countdown-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .red-bar .countdown-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 6px 12px;
+            text-align: center;
+            min-width: 52px;
+        }
+        .red-bar .countdown-number {
+            font-size: 29px;
+            font-weight: 300;
+            color: #ffffff;
+            display: block;
+            line-height: 1.2;
+        }
+        .red-bar .countdown-label {
+            font-size: 12px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ===== SECTION 2: HERO GRADIENT ===== */
+        .hero {
+            background: linear-gradient(90deg, #0A0D16 0%, #1B0600 100%);
+            border-radius: 0 0 30px 30px;
+            padding: 20px 0 58px;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+        }
+        .hero h1 {
+            font-size: 43px;
+            font-weight: 900;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #ffffff;
+        }
+        .hero .sub-text {
+            font-size: 22px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+            max-width: 780px;
+            margin: 0 auto 28px;
+            line-height: 1.8;
+        }
+        .hero .highlight-box {
+            background: rgba(252,138,104,0.12);
+            border: 1px solid #FC8A68;
+            border-radius: 15px;
+            padding: 24px 32px;
+            max-width: 750px;
+            margin: 0 auto 24px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #ffffff;
+        }
+        .hero .highlight-box strong {
+            color: #FC8A68;
+        }
+        .hero .brain-text {
+            font-size: 17px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+        .hero .brain-text strong {
+            color: #E6A210;
+        }
+        /* image grid placeholder removed */
+
+        /* ===== SECTION 3: PAIN POINTS ===== */
+        .pain-section {
+            background: #FDFDFD;
+            padding: 38px 0 32px;
+            color: #040404;
+        }
+        .pain-section .quote-text {
+            text-align: center;
+            font-size: 52px;
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+        .pain-section .quote-sub {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            color: #000000;
+            margin-bottom: 28px;
+            line-height: 1.3;
+        }
+        .pain-section .pain-body {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 28px;
+            font-size: 24px;
+            color: #333;
+            line-height: 1.9;
+        }
+        .pain-bullets {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .pain-bullet {
+            background: #E6E6E64D;
+            border-radius: 15px;
+            padding: 18px 24px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pain-bullet i {
+            color: #AD0000;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        /* ===== SECTION 4: OLD VS NEW WORLD ===== */
+        .comparison-section {
+            background: linear-gradient(50deg, #0b0e16, #414551);
+            padding: 49px 24px;
+            max-width: 100%;
+            color: #ffffff;
+        }
+        .comparison-section .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 1140px;
+            margin: 0 auto 40px;
+        }
+        .comparison-col {
+            border-radius: 20px;
+            padding: 32px 24px;
+        }
+        .comparison-col h3 {
+            font-size: 23px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .comparison-old {
+            background: #E6E6E64D;
+        }
+        .comparison-old h3 {
+            color: #ff6b6b;
+        }
+        .comparison-new {
+            background: #FFFFFF14;
+            border: 1px solid rgba(230,162,16,0.3);
+        }
+        .comparison-new h3 {
+            color: #E6A210;
+        }
+        .comparison-card {
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            font-size: 17px;
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .comparison-old .comparison-card {
+            background: rgba(255,255,255,0.05);
+        }
+        .comparison-new .comparison-card {
+            background: rgba(255,255,255,0.08);
+        }
+        .comparison-old .comparison-card i {
+            color: #ff6b6b;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        .comparison-new .comparison-card i {
+            color: #E6A210;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        .comparison-bottom {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .comparison-bottom p {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.85);
+        }
+        .comparison-bottom .highlight {
+            color: #E6A210;
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        /* ===== SECTION 5: QUALIFICATION ===== */
+        .qualification-section {
+            background: #FDFDFD;
+            padding: 48px 0 40px;
+            color: #040404;
+        }
+        .qualification-section .intro-text {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        .qualification-section .intro-sub {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 28px;
+            color: #333;
+        }
+        .qual-cards {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .qual-card {
+            background: #FC8A6824;
+            border-radius: 15px;
+            padding: 20px 24px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .qual-card .check {
+            color: #FC8A68;
+            font-size: 22px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        /* ===== SECTION 6: WHY I CREATED THIS ===== */
+        .why-section {
+            background: #F7F7F7;
+            padding: 48px 0 40px;
+            color: #040404;
+        }
+        .why-section .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            color: #000000;
+        }
+        .why-section .story-text {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto;
+            font-size: 18px;
+            color: #444;
+            line-height: 2;
+        }
+        .why-section .story-text .highlight {
+            color: #7E4534;
+            font-weight: 700;
+        }
+
+        /* ===== SECTION 7: ABOUT / SOCIAL PROOF ===== */
+        .about-section {
+            background: linear-gradient(182deg, rgba(246,242,238,0) 0%, #32ACC1 100%);
+            padding: 60px 0 80px;
+            color: #040404;
+        }
+        .about-section .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #000;
+        }
+        .about-section .section-sub {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .pillar-card {
+            background: #D6EEF3;
+            border-radius: 15px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .pillar-card:hover {
+            transform: translateY(-6px);
+        }
+        .pillar-card i {
+            font-size: 36px;
+            color: #32ACC1;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .pillar-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+        }
+        .pillar-card p {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        /* ===== SECTION 8: WHAT'S IN THE GUIDE ===== */
+        .guide-section {
+            background: linear-gradient(90deg, #0A0D16 0%, #1B0600 100%);
+            padding: 60px 0 80px;
+            color: #ffffff;
+        }
+        .guide-section .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #ffffff;
+        }
+        .guide-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .guide-card {
+            background: #FC9F67;
+            border-radius: 15px;
+            padding: 22px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.3s;
+            color: #000;
+        }
+        .guide-card:hover {
+            transform: translateY(-4px);
+        }
+        .guide-card .num {
+            font-size: 28px;
+            font-weight: 900;
+            color: rgba(0,0,0,0.25);
+            flex-shrink: 0;
+            min-width: 36px;
+            font-family: 'Rubik', sans-serif;
+        }
+        .guide-card p {
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: #000;
+        }
+        .guide-card:last-child {
+            grid-column: 1 / -1;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION 9: AI TECHNOLOGY ===== */
+        .ai-section {
+            background: linear-gradient(50deg, #0b0e16, #414551);
+            padding: 60px 0 80px;
+            color: #ffffff;
+        }
+        .ai-section .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        .ai-section .section-sub {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 40px;
+        }
+        .ai-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .ai-card {
+            background: linear-gradient(15deg, #03C1ED, #477580, #03C1ED);
+            border-radius: 15px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: transform 0.3s;
+            color: #ffffff;
+        }
+        .ai-card:hover {
+            transform: translateY(-6px);
+        }
+        .ai-card i {
+            font-size: 36px;
+            color: #ffffff;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .ai-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        /* ===== SECTION 10: TESTIMONIALS ===== */
+        .testimonials-section {
+            background: #F7F7F7;
+            padding: 60px 0 80px;
+            color: #040404;
+        }
+        .testimonials-section .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #000;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1060px;
+            margin: 0 auto;
+        }
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 28px 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+        }
+        .testimonial-card .amount {
+            font-size: 28px;
+            font-weight: 900;
+            color: #E6A210;
+            margin-bottom: 8px;
+            font-family: 'Rubik', sans-serif;
+        }
+        .testimonial-card .stars {
+            color: #E6A210;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .testimonial-card .quote {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        /* ===== SECTION 11: FAQ ACCORDION ===== */
+        .faq-section {
+            background: #FDFDFD;
+            padding: 60px 0 80px;
+            color: #040404;
+        }
+        .faq-section .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: #000;
+        }
+        .faq-list {
+            max-width: 750px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .faq-item {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .faq-question {
+            background: #FDC5A4;
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            transition: background 0.3s;
+            border-radius: 15px;
+        }
+        .faq-question:hover {
+            background: #936C4D;
+            color: #ffffff;
+        }
+        .faq-item.active .faq-question {
+            background: #936C4D;
+            color: #ffffff;
+            border-radius: 15px 15px 0 0;
+        }
+        .faq-question .arrow {
+            transition: transform 0.3s;
+            font-size: 14px;
+        }
+        .faq-item.active .faq-question .arrow {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #ffffff;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+        .faq-answer-inner {
+            padding: 20px 24px;
+            color: #444;
+            font-size: 17px;
+            line-height: 1.8;
+            border: 1px solid #e0e0e0;
+            border-top: none;
+            border-radius: 0 0 15px 15px;
+        }
+
+        /* ===== SECTION 12: GUARANTEE ===== */
+        .guarantee-section {
+            background: linear-gradient(182deg, rgba(246,242,238,0) 0%, #32ACC1 100%);
+            padding: 60px 0 80px;
+            text-align: center;
+            color: #040404;
+        }
+        .guarantee-badge {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(15deg, #E6A210, #FFFB84, #E6A210);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 20px rgba(230,162,16,0.3);
+        }
+        .guarantee-badge i {
+            font-size: 36px;
+            color: #000;
+        }
+        .guarantee-section h2 {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #000;
+        }
+        .guarantee-section p {
+            font-size: 18px;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto 10px;
+            line-height: 1.8;
+        }
+        .guarantee-section .motto {
+            font-size: 17px;
+            font-weight: 700;
+            color: #7E4534;
+            margin-top: 16px;
+        }
+
+        /* ===== SECTION 13: FINAL CTA + FORM ===== */
+        .final-cta {
+            background: linear-gradient(90deg, #0A0D16 0%, #1B0600 100%);
+            padding: 60px 0 106px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .final-cta .section-title {
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: #ffffff;
+            text-align: center;
+        }
+        .final-cta .section-sub {
+            font-size: 18px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.8);
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        .final-cta .scarcity {
+            display: inline-block;
+            background: linear-gradient(15deg, #97533e, #fc9677, #97533e);
+            border-radius: 30px;
+            padding: 8px 24px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 28px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto 24px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .final-cta .security-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 15px;
+            margin-top: 16px;
+        }
+        .final-cta .countdown-bar {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 32px;
+        }
+        .final-cta .countdown-item {
+            background: #6EC1E400;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 8px 14px;
+            text-align: center;
+            min-width: 60px;
+        }
+        .final-cta .countdown-number {
+            font-size: 29px;
+            font-weight: 300;
+            color: #ffffff;
+            display: block;
+            line-height: 1.2;
+        }
+        .final-cta .countdown-label {
+            font-size: 14px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ===== SECTION 14: FOOTER ===== */
+        .footer {
+            background: #0A0D16;
+            padding: 32px 0;
+            text-align: center;
+        }
+        .footer p {
+            color: rgba(255,255,255,0.5);
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .footer a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: #FC8A68;
+        }
+        .footer .divider {
+            margin: 0 10px;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE 768px ===== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero .sub-text {
+                font-size: 18px;
+            }
+            .pain-section .quote-text {
+                font-size: 28px;
+            }
+            .pain-section .quote-sub {
+                font-size: 22px;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .guide-cards {
+                grid-template-columns: 1fr;
+            }
+            .guide-card:last-child {
+                max-width: 100%;
+            }
+            .ai-cards {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .comparison-section .section-title,
+            .guide-section .section-title,
+            .ai-section .section-title,
+            .about-section .section-title,
+            .testimonials-section .section-title,
+            .faq-section .section-title,
+            .final-cta .section-title,
+            .why-section .section-title {
+                font-size: 28px;
+            }
+            .cta-btn {
+                font-size: 18px;
+                padding: 12px 28px;
+            }
+            .red-bar .countdown-item {
+                min-width: 44px;
+                padding: 4px 8px;
+            }
+            .red-bar .countdown-number {
+                font-size: 22px;
+            }
+        }
+
+        /* ===== RESPONSIVE 480px ===== */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 16px 0 40px;
+            }
+            .hero h1 {
+                font-size: 26px;
+            }
+            .hero .sub-text {
+                font-size: 16px;
+            }
+            .hero .highlight-box {
+                padding: 18px 20px;
+                font-size: 16px;
+            }
+            .pain-section .quote-text {
+                font-size: 24px;
+            }
+            .pain-section .quote-sub {
+                font-size: 18px;
+            }
+            .comparison-section {
+                padding: 32px 16px;
+            }
+            .cta-btn {
+                font-size: 17px;
+                padding: 12px 24px;
+                width: 100%;
+            }
+            .form-container {
+                padding: 20px;
+                border-radius: 16px;
+            }
+            .guide-card {
+                padding: 18px 16px;
+            }
+            .qualification-section .intro-text {
+                font-size: 22px;
+            }
+            .testimonial-card .amount {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION 1: RED ANNOUNCEMENT BAR -->
+    <div class="red-bar">
+        <div class="container">
+            <p>המודל שמייצר הכנסות גם בזמנים של מהפכת ה-AI</p>
+            <div class="countdown-label-text">ההדרכה זמינה לך עוד:</div>
+            <div class="countdown-bar" id="countdown-top">
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="days">00</span>
+                    <span class="countdown-label">ימים</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="hours">00</span>
+                    <span class="countdown-label">שעות</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="minutes">00</span>
+                    <span class="countdown-label">דקות</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="seconds">00</span>
+                    <span class="countdown-label">שניות</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: HERO GRADIENT -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="reveal">אתה שווה הרבה יותר מהמספר שרשום בתלוש השכר שלך</h1>
+            <p class="sub-text reveal">וגם אומרים לך שה AI הולך להחליף אותך, אבל לא סיפרו לך איך אתה יכול לקחת את הכוח הזה ולהפוך אותו לעסק איקומרס שיכול לייצר לך הכנסה נוספת גם אם אין לך ניסיון</p>
+
+            <div class="highlight-box reveal">
+                תוך 30 יום של הדרכה וליווי, אני אלמד אותך את <strong>7 השלבים המדויקים</strong> לבניית עסק איקומרס רווחי:
+            </div>
+
+            <p class="brain-text reveal">המוח העסקי שתלמידים משלמים עליו כדי להרוויח <strong>7,000 עד 20,000 ש"ח בחודש מהמחשב בלבד</strong></p>
+
+            <a href="#final-cta" class="cta-btn reveal"><span>אני רוצה גישה להדרכה בחינם &larr;</span></a>
+        </div>
+    </section>
+
+    <!-- SECTION 3: PAIN POINTS -->
+    <section class="pain-section">
+        <div class="container">
+            <div class="quote-text reveal">"ביטחון תעסוקתי"</div>
+            <div class="quote-sub reveal">הוא השקר הכי גדול שמכרו לך.</div>
+            <p class="pain-body reveal">אתה קם בבוקר, עובד קשה על החלומות של אחרים, אבל בסוף החודש?<br>התלוש שלך הוא בדיחה לעומת הערך שאתה מייצר.</p>
+
+            <div class="big-pain reveal" style="text-align:center; margin: 40px auto;">
+                <div style="font-size: 52px; font-weight: 900; color: #000; line-height: 1.2; margin-bottom: 8px;">אתה מרגיש שקוף</div>
+                <div style="font-size: 52px; font-weight: 900; color: #000; line-height: 1.2; margin-bottom: 24px;">לא מוערך</div>
+            </div>
+
+            <p class="pain-body reveal" style="margin-bottom: 12px;">ובכל לילה במיטה המחשבה הזו מנקרת בך:</p>
+
+            <div class="big-pain reveal" style="text-align:center; margin: 20px auto 40px;">
+                <div style="font-size: 48px; font-weight: 900; color: #FF0000; line-height: 1.2;">'האם זה כל מה שיש לחיים להציע לי?'</div>
+            </div>
+
+            <div class="big-pain reveal" style="text-align:center; margin: 20px auto;">
+                <div style="font-size: 32px; font-weight: 900; color: #000;">תבין, העולם משתנה בקצב מסחרר.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: OLD VS NEW WORLD COMPARISON -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title reveal">תבין, העולם משתנה בקצב מסחרר.</h2>
+            <div class="comparison-grid">
+                <div class="comparison-col comparison-old reveal">
+                    <h3><i class="fas fa-thumbs-down"></i> העולם הישן</h3>
+                    <div class="comparison-card">
+                        <i class="fas fa-times"></i>
+                        <span>לומדים שנים בקורסים תיאורטיים</span>
+                    </div>
+                    <div class="comparison-card">
+                        <i class="fas fa-times"></i>
+                        <span>מנסים לבנות חנות לבד בלי כיוון</span>
+                    </div>
+                    <div class="comparison-card">
+                        <i class="fas fa-times"></i>
+                        <span>עובדים שעות ומקווים שמשהו יצליח</span>
+                    </div>
+                    <div class="comparison-card">
+                        <i class="fas fa-times"></i>
+                        <span>נשארים תקועים בלי הכנסות</span>
+                    </div>
+                </div>
+                <div class="comparison-col comparison-new reveal">
+                    <h3><i class="fas fa-rocket"></i> העולם החדש</h3>
+                    <div class="comparison-card">
+                        <i class="fas fa-check"></i>
+                        <span>7 שלבים מעשיים + הדרכה חינמית שמתחילה עכשיו</span>
+                    </div>
+                    <div class="comparison-card">
+                        <i class="fas fa-check"></i>
+                        <span>ליווי אישי + קהילה של 500+ יזמים מצליחים</span>
+                    </div>
+                    <div class="comparison-card">
+                        <i class="fas fa-check"></i>
+                        <span>AI עושה 80% מהעבודה,אתה מתמקד ברווחים</span>
+                    </div>
+                    <div class="comparison-card">
+                        <i class="fas fa-check"></i>
+                        <span>תלמידים מתחילים להרוויח כבר בחודש הראשון</span>
+                    </div>
+                </div>
+            </div>
+            <div class="comparison-bottom reveal">
+                <p>אם תמשיך לעבוד בלי שיטה,אתה פשוט תישאר במקום.</p>
+                <span class="highlight">הגיע הזמן להחליף את הפחד בשיטה</span>
+                <br>
+                <a href="#final-cta" class="cta-btn"><span>אני רוצה גישה להדרכה בחינם &larr;</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: QUALIFICATION -->
+    <section class="qualification-section">
+        <div class="container">
+            <div class="intro-text reveal">בוא נודה באמת,</div>
+            <div class="intro-sub reveal">אם אתה:</div>
+            <div class="qual-cards">
+                <div class="qual-card reveal">
+                    <span class="check">&#10003;</span>
+                    <span>רוצה להחזיק בעסק שבו ה-AI עוזר לך להרוויח יותר</span>
+                </div>
+                <div class="qual-card reveal">
+                    <span class="check">&#10003;</span>
+                    <span>רוצה לבנות הכנסה דיגיטלית בלי להיות תלוי במעסיק</span>
+                </div>
+                <div class="qual-card reveal">
+                    <span class="check">&#10003;</span>
+                    <span>מוכן ללמוד שיטה מוכחת מיזם שמכר 19 מיליון דולר</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: WHY I CREATED THIS -->
+    <section class="why-section">
+        <div class="container">
+            <h2 class="section-title reveal">הייתי חייב ליצור את ההדרכה הזו...</h2>
+            <div class="story-text reveal">
+                <p>אני ראיתי יותר מדי אנשים טובים שמשקיעים באלפי קורסים תיאורטיים שלא נותנים כלום. ראיתי אנשים עם פוטנציאל אדיר שנשארים תקועים כי אף אחד לא נתן להם את הכלים האמיתיים.</p>
+                <br>
+                <p><span class="highlight">תחושת שליחות ומיאוס מהמצב שבו אנשים טובים עם פוטנציאל נשארים תקועים בגלל שלא קיבלו את הכלים הנכונים.</span></p>
+                <br>
+                <p>לכן יצרתי את ההדרכה הזו,כדי לתת לכל אחד את אותם 7 שלבים שעזרו לי ולתלמידים שלי לבנות עסקי איקומרס רווחיים.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: ABOUT / SOCIAL PROOF -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title reveal">אנחנו המועדון הסגור של אביב מלכה:</h2>
+            <p class="section-sub reveal">מעל 500 יזמי איקומרס מצליחים בישראל</p>
+            <div class="pillars-grid">
+                <div class="pillar-card reveal">
+                    <i class="fas fa-store"></i>
+                    <h4>שיטה מעשית לבניית חנות רווחית</h4>
+                    <p>צעד אחר צעד, מהרעיון ועד למכירה הראשונה</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <i class="fas fa-users"></i>
+                    <h4>ליווי אישי + קהילה + עדכונים חודשיים</h4>
+                    <p>אתה לא לבד,יש מי שילווה אותך בכל שלב</p>
+                </div>
+                <div class="pillar-card reveal">
+                    <i class="fas fa-robot"></i>
+                    <h4>מינוף AI לזיהוי מוצרים, קופי ומודעות</h4>
+                    <p>הטכנולוגיה עובדת בשבילך,אתה מתמקד ברווחים</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: WHAT'S IN THE GUIDE -->
+    <section class="guide-section">
+        <div class="container">
+            <h2 class="section-title reveal">מה תגלה בהדרכה החינמית?</h2>
+            <div class="guide-cards">
+                <div class="guide-card reveal">
+                    <div class="num">01</div>
+                    <p>למה אנשים פחות חכמים ממך מצליחים יותר</p>
+                </div>
+                <div class="guide-card reveal">
+                    <div class="num">02</div>
+                    <p>5 ערוצי הרווח שכל ישראלי חייב להכיר</p>
+                </div>
+                <div class="guide-card reveal">
+                    <div class="num">03</div>
+                    <p>הטריק המסחרי שעומד מאחורי 19 מיליון דולר</p>
+                </div>
+                <div class="guide-card reveal">
+                    <div class="num">04</div>
+                    <p>איך לגרום לכסף לייצר כסף נוסף</p>
+                </div>
+                <div class="guide-card reveal">
+                    <div class="num">05</div>
+                    <p>המודל 'אפשרי-בלתי אפשרי' להכנסות אונליין</p>
+                </div>
+                <div class="guide-card reveal">
+                    <div class="num">06</div>
+                    <p>4 חסמים מנטליים שמונעים ממך להתחיל</p>
+                </div>
+                <div class="guide-card reveal">
+                    <div class="num">07</div>
+                    <p>איך AI משנה את כללי המשחק באיקומרס ב-2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: AI TECHNOLOGY -->
+    <section class="ai-section">
+        <div class="container">
+            <h2 class="section-title reveal">הנשק הסודי: AI לאיקומרס</h2>
+            <p class="section-sub reveal">בעוד כולם מפחדים מ-AI, התלמידים שלנו משתמשים בו כדי:</p>
+            <div class="ai-cards">
+                <div class="ai-card reveal">
+                    <i class="fas fa-bullseye"></i>
+                    <h4>זיהוי מוצרים מנצחים אוטומטית</h4>
+                </div>
+                <div class="ai-card reveal">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h4>כתיבת קופי ומודעות שמוכרים</h4>
+                </div>
+                <div class="ai-card reveal">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>ניהול קמפיינים שחוסך 80% מהזמן</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- SECTION 11: FAQ ACCORDION -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title reveal">שאלות ותשובות</h2>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>אין לי ידע קודם באיקומרס,ההדרכה בשבילי?</span>
+                        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">בהחלט. ההדרכה בנויה בדיוק בשביל מי שמתחיל מאפס. רוב התלמידים שלנו התחילו בדיוק מאיפה שאתה.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>אין לי זמן,אני עובד במשרה מלאה</span>
+                        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">ההדרכה קצרה וממוקדת. גם שעה ביום מספיקה כדי להתחיל.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>אין לי כסף להשקעה ראשונית</span>
+                        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">לא צריך הון התחלתי גדול. השיטה מאפשרת להתחיל עם השקעה מינימלית.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>כבר ניסיתי דרופשיפינג ונכשלתי</span>
+                        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">רוב מי שנכשל,עבד לבד בלי שיטה ובלי ליווי. עם הכלים הנכונים, התוצאות שונות.</div>
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <div class="faq-question">
+                        <span>אני לא יודע אנגלית</span>
+                        <span class="arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">כלי AI עושים את העבודה. לא צריך אנגלית כדי להצליח באיקומרס ב-2026.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- SECTION 13: FINAL CTA + FORM -->
+    <section class="final-cta" id="final-cta">
+        <div class="container">
+            <h2 class="section-title reveal">מוכן לגלות את השיטה שמייצרת הכנסות?</h2>
+            <p class="section-sub reveal">השאר פרטים וקבל גישה מיידית להדרכה,בחינם, לזמן מוגבל</p>
+            <div class="scarcity reveal">נותרו רק 12 מקומות</div>
+            <br><br>
+            <div class="form-container reveal">
+                <script src="https://www.avivmalka.com/forms/2149456993/embed.js"></script>
+            </div>
+            <p class="security-text reveal"><i class="fas fa-lock"></i> הפרטים שלך מאובטחים | לא נשלח ספאם</p>
+
+            <div class="countdown-bar reveal" id="countdown-footer">
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="days">00</span>
+                    <span class="countdown-label">ימים</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="hours">00</span>
+                    <span class="countdown-label">שעות</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="minutes">00</span>
+                    <span class="countdown-label">דקות</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" data-unit="seconds">00</span>
+                    <span class="countdown-label">שניות</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 14: FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 אביב מלכה,כל הזכויות שמורות</p>
+            <div>
+                <a href="#">תנאי שימוש</a>
+                <span class="divider">|</span>
+                <a href="#">מדיניות פרטיות</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== COUNTDOWN TIMER (evergreen 48h from first visit) =====
+        (function() {
+            var STORAGE_KEY = 'avivmalka_countdown_end';
+            var endTime = localStorage.getItem(STORAGE_KEY);
+
+            if (!endTime || parseInt(endTime) < Date.now()) {
+                endTime = Date.now() + 48 * 60 * 60 * 1000;
+                localStorage.setItem(STORAGE_KEY, endTime);
+            } else {
+                endTime = parseInt(endTime);
+            }
+
+            function updateCountdowns() {
+                var now = Date.now();
+                var diff = Math.max(0, endTime - now);
+
+                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                var timers = document.querySelectorAll('.countdown-bar');
+                timers.forEach(function(timer) {
+                    var d = timer.querySelector('[data-unit="days"]');
+                    var h = timer.querySelector('[data-unit="hours"]');
+                    var m = timer.querySelector('[data-unit="minutes"]');
+                    var s = timer.querySelector('[data-unit="seconds"]');
+                    if (d) d.textContent = String(days).padStart(2, '0');
+                    if (h) h.textContent = String(hours).padStart(2, '0');
+                    if (m) m.textContent = String(minutes).padStart(2, '0');
+                    if (s) s.textContent = String(seconds).padStart(2, '0');
+                });
+
+                if (diff > 0) {
+                    requestAnimationFrame(function() {
+                        setTimeout(updateCountdowns, 1000);
+                    });
+                }
+            }
+
+            updateCountdowns();
+        })();
+
+        // ===== FAQ ACCORDION =====
+        document.querySelectorAll('.faq-question').forEach(function(q) {
+            q.addEventListener('click', function() {
+                var item = this.parentElement;
+                var wasActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(function(el) {
+                    el.classList.remove('active');
+                });
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // ===== SCROLL REVEAL (fadeInUp with IntersectionObserver) =====
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
