@@ -1,0 +1,34 @@
+# secrets
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+*.swp
+
+# state / runtime artifacts
+state/
+runs/
+*.log
+
+# private knowledge (keep in a separate private repo)
+references/my-*.md
+skills/**/references/my-*.md
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# node
+node_modules/
