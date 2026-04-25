@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Paidads",
+  title: "nitosEcomapp",
   description: "All-in-one ads, SEO, CRO, socials, emails, taxes, and ecom-builder control panel.",
 };
 

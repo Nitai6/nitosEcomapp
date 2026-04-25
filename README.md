@@ -1,4 +1,4 @@
-# Paidads
+# nitosEcomapp
 
 All-in-one control panel for **ads, SEO, CRO, socials, emails & SMS, customer service, Israeli taxes, ecom-builder projects, and app settings**. Backed by Supabase, built with Next.js 14.
 
@@ -52,8 +52,8 @@ The database schema lives in 7 migrations (49 tables + 8 profit views). Options:
 
 ### 3. Clone + run locally
 ```bash
-git clone https://github.com/Nitai6/paidads
-cd paidads
+git clone https://github.com/Nitai6/nitosEcomapp
+cd nitosEcomapp
 cp .env.example .env.local
 # edit .env.local with your Supabase URL + keys
 npm install
