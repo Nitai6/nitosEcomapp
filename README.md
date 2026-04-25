@@ -1,58 +1,111 @@
-# paidads
+# Paidads
 
-All skills from [avivmalka123/claude-skills](https://github.com/avivmalka123/claude-skills), imported as the starting point. Being refactored into MCP-driven routine agents with my own knowledge layered on top.
+All-in-one control panel for **ads, SEO, CRO, socials, emails & SMS, customer service, Israeli taxes, ecom-builder projects, and app settings**. Backed by Supabase, built with Next.js 14.
 
-**114 skills total** — full catalog in `skills/`. Covers:
+**Open-source self-hosted template** — each operator/friend runs their own Supabase + Vercel deployment. No central server, no shared data.
 
-- **Paid advertising** — `ads`, `paid-ads`, `ads-google`, `ads-meta`, `ads-tiktok`, `ads-linkedin`, `ads-youtube`, `ads-microsoft`, `ads-apple`, `ads-plan`, `ads-budget`, `ads-math`, `ads-competitor`, `ads-test`, `ads-landing`, `ads-creative`, `ads-create`, `ads-dna`, `ads-generate`, `ads-photoshoot`, `ads-audit`, `ad-creative`
-- **SEO** — `seo`, `seo-audit`, `seo-content`, `seo-page`, `seo-plan`, `seo-technical`, `seo-schema`, `seo-sitemap`, `seo-hreflang`, `seo-images`, `seo-geo`, `seo-programmatic`, `seo-competitor-pages`, `ai-seo`, `programmatic-seo`, `schema-markup`, `site-architecture`
-- **CRO** — `page-cro`, `form-cro`, `onboarding-cro`, `signup-flow-cro`, `popup-cro`, `paywall-upgrade-cro`, `ab-test-setup`
-- **Content / Creative** — `copywriting`, `copy-editing`, `storytelling`, `social-content`, `social`, `content-strategy`, `email-sequence`, `cold-email`, `youtube-ideas`, `humanizer`, `readme-writer`
-- **Video / Carousel** — `video-creator`, `heygen`, `remotion`, `carousel-machine2`, `carousel-machine-english`, `carousel-aviv-king`, `spline-3d-integration`
-- **Landing pages / Lead magnets** — `landing-page`, `landing-page-builder-html`, `new-guide`, `hebrew-pdf-guide`, `company-pdf`, `free-tool-strategy`, `referral-program`
-- **Strategy / Ops** — `marketing-ideas`, `marketing-psychology`, `launch-strategy`, `pricing-strategy`, `churn-prevention`, `competitor-alternatives`, `sales-enablement`, `project-proposal`, `ceo-advisor`, `last30days`, `product-marketing-context`, `revops`, `auto-product-test`
-- **Lead gen / Scraping** — `scrape-leads-israel`, `scrape-leads-global`, `firecrawl`
-- **Analytics / Tracking** — `analytics-tracking`, `meta-verification`, `cookies`
-- **Compliance** — `israeli-legal-compliance`, `cyber`, `security-audit`
-- **Dev utilities** — `claude-cli`, `claude-creators`, `mcp-builder`, `skill-creator`, `brainstorming`, `writing-plans`, `writing-skills`, `dispatching-parallel-agents`, `executing-plans`, `finishing-a-development-branch`, `requesting-code-review`, `receiving-code-review`, `subagent-driven-development`, `systematic-debugging`, `test-driven-development`, `using-git-worktrees`, `using-superpowers`, `verification-before-completion`
-- **Integrations** — `gmail-organizer`, `cardcom-payment`
+## 9 categories
 
-## Editing a skill
+| # | Category | What it tracks |
+|---|---|---|
+| 1 | **Ads** | Campaigns, ad sets, creatives, daily insights, ROAS, MER, kill/scale log |
+| 2 | **SEO** | Pages, keywords, rankings, audits, backlinks, GEO readiness |
+| 3 | **CRO** | Pages, A/B tests, LP health scores, funnel leaks |
+| 4 | **Socials** | Accounts across YT/IG/TT/X/Bluesky/FB/Pinterest, posts, content calendar, reverse-eng targets |
+| 5 | **Emails & SMS** | Flows, campaigns, segments, opens, clicks, conversions, attributed revenue |
+| 6 | **Customer Service** | Tickets across email/IG/FB/WhatsApp/chat, response SLAs, FAQ knowledge base |
+| 7 | **Taxes (Israel)** | Osek Patur / Osek Murshe / Chevra Ba'am, VAT 18% reporting, reverse-charge for foreign ad spend, Bituach Leumi |
+| 8 | **Ecom Builder** | Store-build projects, stages, tasks, assets, agent session links |
+| 9 | **Settings** | Brands, MCP connections, manually tracked subscriptions, niches, benchmarks, alert preferences |
 
-Each skill is a folder under `skills/` with a `SKILL.md` inside. That file has:
+Plus an **invisible data-layer** (products, orders, refunds, ad_spend_daily, external_costs) that feeds profit math into every category.
 
-- **Frontmatter** (top `---` block) — metadata; don't break
-- **Process / body** — the skill's logic; **this is where you add your knowledge, tweak rules, adjust steps**
-- **Reference files** (other `.md` or `.json` files in the folder) — benchmarks, check lists, specs; tune numbers here
+## Stack (cheapest viable)
 
-### Edit locally (recommended for big changes)
+| Layer | Tool | Cost |
+|---|---|---|
+| Database + auth + storage | Supabase (free tier) | $0 |
+| Frontend | Next.js 14 on Vercel (hobby) | $0 |
+| UI | Tailwind + custom theme | $0 |
+| Charts | Recharts | $0 |
+| Auth | Supabase magic link | $0 |
+
+**Total: $0/month** until you outgrow free tiers (~10k orders/month or 500MB historical data).
+
+## Theme
+
+Light blue + blonde. Primary `#0EA5E9` (sky), accent `#D4A574` (honey). Defined in `tailwind.config.ts`.
+
+## Setup (self-host)
+
+### 1. Create Supabase project
+- Go to https://supabase.com → New project
+- Pick your region (Frankfurt for Israel/EU, us-east-1 for US, etc.)
+- Save the DB password
+- Settings → API → copy **Project URL**, **anon key**, **service_role key**
+
+### 2. Apply schema
+The database schema lives in 7 migrations (49 tables + 8 profit views). Options:
+- **Via Supabase MCP** (fastest): connect the Supabase MCP and run each migration file from `supabase/migrations/` in order
+- **Via Supabase CLI**: `supabase link --project-ref YOUR_REF && supabase db push`
+- **Manual**: open each file in `supabase/migrations/` and paste into Supabase SQL Editor, in numeric order
+
+### 3. Clone + run locally
+```bash
+git clone https://github.com/Nitai6/paidads
+cd paidads
+cp .env.example .env.local
+# edit .env.local with your Supabase URL + keys
+npm install
+npm run dev
+```
+
+### 4. Deploy to Vercel
+```bash
+npx vercel
+```
+Add the same env vars in Vercel project settings.
+
+### 5. First login
+- Go to your deployed URL → enter your email → click magic link
+- Supabase creates an `auth.users` row on first login. Add a matching `app_users` row in SQL Editor:
+```sql
+insert into app_users (id, email, role)
+values ('<your auth.users id>', 'you@example.com', 'owner');
+```
+
+## Data flow
 
 ```
-cd C:\Users\Admin\projects\paidads
-# edit with VS Code / Cursor / Notepad
-git add .
-git commit -m "tune ads-meta thresholds"
-git push
+External services (Meta Ads, Klaviyo, Shopify, GSC, Gmail, ...)
+    ↓  via MCPs / APIs / webhooks
+Supabase tables  (raw data, 1 row per event)
+    ↓  Postgres views compute on the fly
+v_daily_profit, v_campaign_performance, v_monthly_profit, ...
+    ↓
+Next.js dashboard pages
 ```
 
-### Edit on GitHub (fastest for small tweaks)
+Profit math is pure SQL — `net_revenue - COGS - ad_spend - processor_fees - external_costs`. MER, ROAS, gross margin all live in views, not in application code.
 
-- Click any file in https://github.com/Nitai6/paidads → pencil icon → edit → commit from the browser
-- Or press `.` on any repo page to open the full browser-based VS Code (github.dev)
-- After editing on GitHub, run `git pull` locally before editing locally again
+## Privacy model (Path B: self-hosted)
 
-## Layering your own knowledge
+- Each install is a **separate Supabase project** — no cross-operator data sharing by design.
+- Subscriptions table tracks **your** operator costs, not per-brand. Friends who install the app add their own subscriptions in their own deployment.
+- `user_brand_access` table scopes data per-user within one deployment (for when you manage multiple brands in one install — e.g., your own brands plus agency clients).
+- RLS is currently permissive (`USING (true)` for authenticated). Tighten to per-user-per-brand before onboarding untrusted users.
 
-Don't overwrite Aviv's baseline — layer on top. Inside any skill folder, create files named `references/my-*.md`. These are gitignored by default (see `.gitignore`), so they stay private until you decide otherwise.
+## Roadmap
 
-When the skills get adapted for routines, each skill will read both Aviv's references and your `my-*.md` overrides, with your values winning on conflict.
+- [ ] Real CRUD forms on each category page (current pages are read-only shells)
+- [ ] MCP integrations: Meta Ads, Klaviyo, Shopify, GSC, GA4, TikTok
+- [ ] Routine runner (scheduled audits, creative-refresh, budget-pacing, competitor-watch)
+- [ ] Recharts graphs on Overview + Ads pages
+- [ ] Mobile-responsive polish
+- [ ] Cheshbonit Digitalit integration for Israeli e-invoicing
+- [ ] Shopify webhook ingestion for orders/products
+- [ ] Ecom-builder agent handoff + session embed
 
-## Status
+## License
 
-- **Phase 0** (current): raw import, editing baseline
-- **Phase 1** (next): adapt core ad skills to use MCPs, wire first routine chain
-- **Phase 2+**: platform-by-platform expansion, self-healing, scheduled triggers
-
-## Notes
-
-- `carousel-machine` (v1) was dropped; `carousel-machine2` is the current version. English and Aviv-personal variants kept because they serve different purposes.
+MIT

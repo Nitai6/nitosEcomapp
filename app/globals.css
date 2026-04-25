@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F0F9FF;
+    --surface: #FFFFFF;
+    --foreground: #0F172A;
+  }
+
+  html, body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface rounded-2xl shadow-card border border-surface-border p-5;
+  }
+  .card-warm {
+    @apply bg-accent-warm rounded-2xl shadow-card border border-accent-soft p-5;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-600 shadow-pop;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink-muted hover:bg-primary-50 hover:text-primary-700;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-white hover:bg-accent-500;
+  }
+  .kpi-label { @apply text-xs uppercase tracking-wide text-ink-muted font-medium; }
+  .kpi-value { @apply text-2xl font-semibold text-ink mt-1; }
+  .kpi-delta-up { @apply text-xs text-status-success font-medium; }
+  .kpi-delta-down { @apply text-xs text-status-crit font-medium; }
+
+  .input {
+    @apply w-full rounded-xl border border-surface-border bg-surface px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary-100;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+  .badge-primary { @apply badge bg-primary-50 text-primary-700; }
+  .badge-accent { @apply badge bg-accent-soft text-accent-600; }
+  .badge-success { @apply badge bg-emerald-50 text-emerald-700; }
+  .badge-warn { @apply badge bg-amber-50 text-amber-700; }
+  .badge-crit { @apply badge bg-red-50 text-red-700; }
+}

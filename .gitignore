@@ -32,3 +32,10 @@ venv/
 
 # node
 node_modules/
+
+# Next.js
+.next/
+out/
+build/
+.vercel/
+next-env.d.ts
