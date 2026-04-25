@@ -11,9 +11,9 @@ mcp_dependencies:
   optional:
     - shopify        # orders + revenue
     - gmail          # expense-invoice search
-    - telegram       # invoice image intake
-    - bank-leumi     # deposit execution (see open-questions.md)
-    - cheshbonit-digitalit  # IL e-invoice issuance
+    - leumi-open-banking  # https://www.leumiopenbanking.co.il/apis — PSD2-style (deposit execution)
+    - rashut-hamissim     # allocation numbers for invoices > ₪25k (post-Jan-2024 rule)
+    - telegram       # invoice image intake (deferred, set up later)
 references:
   - references/my-il-tax-brackets.md
   - references/my-il-tax-brackets.md#מעברי-סוג-עוסק
@@ -53,6 +53,11 @@ One agent that handles every tax-related thing for the operator's e-com brand(s)
    - `ytd_net_profit` = sum of `net_profit` from Jan 1 to today
    - `projected_annual_net` = `ytd_net_profit / months_elapsed * 12` (simple linear; flag as estimate)
 
+4. **Wise FX fee deduction (0.7%)**:
+   - At end of each month, compute foreign revenue: `select sum(total) from orders where customer_country != 'IL' and status in ('paid','fulfilled','partially_refunded') and date_trunc('month', placed_at) = $month`
+   - Insert/upsert one `external_costs` row per month: `name = 'Wise FX fee', category = 'banking', amount = foreign_revenue * 0.007, currency = 'ILS', incurred_at = last_day_of_month, is_recurring = true`
+   - This automatically subtracts from `v_daily_profit.external_costs` → flows into net profit math.
+
 ### Phase 2 — Bracket classification
 
 Read `references/my-il-tax-brackets.md`. Match `projected_annual_net` against:
@@ -77,20 +82,28 @@ vat_owed (if relevant) = vat_reports view for current period
 
 Round per ITA convention (no agorot). Write to `routine_runs.artifacts.tax_amounts_owed`.
 
-### Phase 4 — Bank Leumi deposit
+### Phase 4 — Leumi Open Banking deposit
+
+Uses Bank Leumi's Open Banking API (https://www.leumiopenbanking.co.il/apis). PSD2-style: requires one-time consent flow → returns access + refresh tokens stored in `connections.vault_secret_id`.
 
 **Gate**: only proceeds if all true:
 - `alert_preferences.auto_pay = true` for category `taxes` for current user
-- `bank-leumi` MCP is `connected` in `connections`
-- Computed amount > 0 and < user-configured `max_auto_pay_ils` cap
+- `leumi-open-banking` connection status = `connected`
+- Computed amount > 0 and ≤ `max_auto_pay_ils` cap from `alert_preferences.threshold_json`
 
-If gated off → write `alerts` (`warn`, "₪X owed, click to pay"), include a deeplink to the dashboard's Taxes page where user clicks Confirm.
+**Flow**:
+1. Refresh OAuth token if expiring within 24h.
+2. Call `POST /payment-initiation` (or equivalent endpoint per Leumi API spec) with:
+   - debtor_account: operator's Leumi business account (configured per `tax_entities.brand_id` extension)
+   - creditor: רשות המסים (for income tax / VAT) or ביטוח לאומי (for BL prepayment)
+   - amount: from Phase 3
+   - reference: tax period (e.g. `MAS-2026-Q2`)
+3. On 2xx → insert `bituach_leumi_payments` or `vat_reports` row with `submitted_at = now()`, `paid_at = response.execution_date`.
+4. On failure → keep gate-off behavior (alert, manual confirm).
 
-If gated on → call `mcp__bank-leumi__create_payment` (assumed name; **see Open Questions**) with:
-- recipient: רשות המסים / ביטוח לאומי
-- amount: from Phase 3
-- reference: tax period
-On success → insert `bituach_leumi_payments` row or `vat_reports` row depending on payment type.
+If gated off → write `alerts` (`warn`, "₪X owed, click to pay"), include a deeplink to dashboard `/taxes` where user clicks Confirm to trigger the same call manually.
+
+> Verify in 1b: exact endpoint names + scopes (`payment-initiation`, `accounts`) once the MCP is wired against the Leumi sandbox.
 
 ### Phase 5 — Expense-invoice ingest
 
@@ -109,16 +122,35 @@ Two sources, run in parallel:
 
 Dedupe by `invoice_ref` per vendor.
 
-### Phase 6 — Revenue-invoice issuance
+### Phase 6 — Revenue-invoice issuance (end of month, custom Hebrew design)
 
-For each Shopify order with `status = 'paid'` and no row in `invoices_issued`:
-1. Build invoice payload (Hebrew):
-   - Customer name (or "לקוח אנונימי" if empty)
-   - Items in Hebrew (use `products.title` if Hebrew exists, else translate via LLM and cache)
-   - VAT 18% if `customer_country = 'IL'`, else 0% with `is_export = true`
-2. Call `mcp__cheshbonit-digitalit__issue_invoice` (assumed name) → get allocation number from rashut_hamissim
-3. Insert into `invoices_issued` with `cheshbonit_digitalit_id` + `invoice_number`
-4. Optionally: send PDF to customer email
+Runs once per month (last day, or first of next month). Generates Hebrew invoices in a custom design — **not** via SaaS like Greeninvoice.
+
+For each `orders` row in the closing month with `status in ('paid','fulfilled','partially_refunded')` and no matching row in `invoices_issued`:
+
+1. **Translate items**: use `products.title` if already Hebrew; else LLM-translate (cache result on the product row in a new `title_he` column or `metadata` jsonb to avoid re-translating).
+
+2. **Build payload**:
+   - `doc_type = 'invoice_receipt'`
+   - `invoice_number` = next sequential per-brand (read max from `invoices_issued`, +1)
+   - Customer: `customer_name` if present, else "לקוח אנונימי"
+   - Currency: `ILS`. VAT: 18% if `customer_country = 'IL'`, else 0% + `is_export = true`
+   - Subtotal / VAT / total per the order
+
+3. **Allocation number gate** (post-Jan-2024 ITA rule):
+   - If `total > 25000` AND `customer_country = 'IL'` → call `mcp__rashut-hamissim__request_allocation_number` (assumed; verify in 1b) → store on `invoices_issued.cheshbonit_digitalit_id`
+   - Otherwise skip (allocation not required)
+
+4. **Render PDF** with custom Hebrew design:
+   - Template: `skills/taxes/templates/invoice-he.html` (Tailwind-styled, RTL, brand logo)
+   - Use Playwright (already in stack) to render HTML → PDF
+   - Store PDF in Supabase Storage bucket `invoices/`, write URL to `invoices_issued.notes` or new `pdf_url` column
+
+5. **Insert** `invoices_issued` row.
+
+6. **Optional**: email PDF to `customer_email` via Gmail MCP.
+
+Run wraps with a digest: "✓ {N} חשבוניות הופקו לחודש {month}, סך הכול ₪{total}".
 
 ---
 
@@ -142,22 +174,19 @@ Expenses ingested: {count}  · Revenue invoices issued: {count}
 
 ---
 
-## Open questions (must confirm before V1 ships)
+## Decisions locked in (2026-04-25)
 
-1. **Bank Leumi "official API"** — Israeli retail banks do **not** offer public payment-execution APIs to individuals. Options:
-   - (a) Open Banking read-only (PSD2-style) — read balances, can't execute payments
-   - (b) Business banking API — requires specific contract, not standard
-   - (c) "Pay" stays manual: agent prepares the מקדמה form pre-filled, user clicks once
-   - **My default**: ship (c). Switch to (b) if/when you confirm Bank Leumi gave you API credentials.
+1. **Bank Leumi** → Leumi Open Banking API (https://www.leumiopenbanking.co.il/apis). MCP to be built; payment initiation gated by `auto_pay` flag.
+2. **Hebrew invoices** → custom design, end of month, no SaaS. Render via HTML template + Playwright PDF. Allocation-number call to rashut_hamissim only when `total > 25,000 ₪`.
+3. **Telegram bot** → deferred. Phase 5 ingest = Gmail-only until Telegram bot token is provided.
+4. **Wise FX fee** → 0.7% of monthly foreign revenue, auto-inserted as a recurring `external_costs` row at month-end.
 
-2. **Cheshbonit Digitalit integration** — since Jan 2024, IL invoices > ₪25k need an "allocation number" from rashut_hamissim. Options:
-   - (a) Direct integration with rashut_hamissim API (requires PFX cert + מייצג authorization)
-   - (b) Use a SaaS provider that handles it (Greeninvoice, iCount, Cardcom) — has APIs
-   - **My default**: (b) Greeninvoice (cheapest, widely used). Need your Greeninvoice account or you create one.
+## Open items for Phase 1b (build/test)
 
-3. **Telegram bot** — needs a bot token (BotFather) + a designated chat. Tell me which Telegram account is "you" so I authorize it.
-
-4. **Wise + Shopify fees** — currently the schema captures `processor_fee` per order (Shopify Payments) but **not Wise FX fees** as a separate stream. Add `external_costs` rows from Wise statements monthly, OR add a Wise MCP. Confirm preference.
+- Verify exact Leumi Open Banking endpoint names + OAuth scopes against their sandbox
+- Verify rashut_hamissim allocation-number endpoint (likely needs PFX cert + מייצג auth)
+- Build `skills/taxes/templates/invoice-he.html` (Hebrew RTL invoice template)
+- Add `title_he` column or use `products.metadata` jsonb for cached Hebrew translations
 
 ---
 
