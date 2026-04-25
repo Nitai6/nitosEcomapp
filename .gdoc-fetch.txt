@@ -1,0 +1,426 @@
+﻿This workflow is about meta ads and google ads:
+
+
+google ads:
+
+
+ITS BETTER TO MOVE TO GOOGLE when we have a lot of products in our store (200+) and good products or even a store that was successful in FB , the benefit in google is google do the job to us unlike facebook, in FB we need to create the WOW effect while on google people really specifically search for the products.
+
+
+We will use performance MAX in google. Google is really underrated!
+
+
+Open account in google merchant center 
+Add the google app to shopify and connect
+Follow google steps and instructions 
+Create ads account inside merchants account 
+*when creating settings we need to copy our shipping rules and policy same as shopify (same on return policy)
+
+
+Then go to tools and settings and click conversions then click new tracking and website and put our website then keep settings the same but just make sure its on purchase and on the “VT conversion” put last click. 
+Then click this and put the tag setup and take the given code copy him and in shopify theme liquid search for the last head tag that above him we have script, above the script paste it.
+Then turn on enhance conversation and copy the link and paste it in the checkout event settings in shopify. Make sure to switch the value line with: 'value': {{ checkout.total_price | money_without_currency }}, 
+Its important to have sync between the store and the GMC so get and check policys etc
+
+
+
+
+Creating a campaign: 
+Choose sales , choose performance max , for starters use budget of 20$ and choose max conversion value .
+Target 1 country at the start and add logos images , for headlines we can use jasper ai or gemini 
+Audience signal: in segments choose the second options and enter around 7 kds , create another segment and choose 1st option and add websites there of competitors or you the more the better. and do the same at interest and detailed demographic section, in the data section if u had data it will show 
+
+
+How to optimize great in google: great optimization is important to google . we want to have the features in bold in the description and add videos, gifs or images at the description using gemini we want to maximize the product description. Make sure to use the product main keyword in title and description.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Meta ads: the holy grail.
+  WE CREATE ONLY DIRECT RESPONSE ADS. our path to make a good high converting ads video or image. We want to keep our published ratio of video: images at 4:1. In order to make ads for our website, we have some options as below:
+In videos we have 10 different options of videos options to create :
+1. story telling (vid's that running excitment or curiosity and its objective is to create emotional connection with the fans.) we take others already proven work ads
+SCRIPT: 
+Hook (first 3 seconds of the video) → Types of hooks: • Visual hook • Audio hook • Text hook ⬇️ Storytelling / Emotional Connection “I personally experienced something related to the problem, and I want to share my experience with you.” ⬇️ Problem A specific pain (physical or emotional) | Lack of knowledge – people don’t understand the issue | People try to deal with it but don’t really succeed ⬇️ Attempts to Solve the Problem (without success) Trying to push the problem aside | Using solutions that only partially work | Feeling frustration and confusion ⬇️ Solution – Using Our Product Suddenly I discovered this product | I decided to try it | The product solves the problem ⬇️ Conclusion / Ending The “hero moment” – a satisfying ending + CTA “click to buy” as example only. Getting the solution, feeling relief, improvement, happiness, etc.
+
+
+
+
+2. UGC (vid's that created by real customers or content creator that either use the product or we paid them to make this ad and its objective is to increase trust and make community felling), focuses strictly on the customer's face, their review, and the social proof.
+SCRIPT:
+3. Tutorial Video (slower and purely educational (good for retargeting)
+A visual guide that explains how to use the product.
+Goal: To explain the product’s usage in a simple, visual way.
+SCRIPT:
+   4. Unboxing
+A video in which the product is opened for the first time in front of the camera. (must be  hyper-focused on the premium feel, ASMR sounds, and visual presentation)
+Goal: To showcase the packaging and the initial experience.
+SCRIPT:
+7. The Rapid-Fire Listicle (The Information Hack)
+This format triggers the human psychological need to complete a list. It strips out the emotional fluff and delivers pure, structured data.
+      * The Framework: Fast-paced text and quick cuts. "3 Reasons Why [X]..." or "4 Things to Look For Before Buying [Y]." You state the points 1, 2, 3 as quickly as possible while showing the product. ( Listicle is aggressive and hook-driven (good for cold traffic).)
+      * Why it works: It feels like educational value rather than an emotional pitch. People stick around simply because their brain wants to hear the final number on the list.
+SCRIPT:
+8. The Extreme Stress Test (The "Will It Blend?")
+This is pure spectacle and physical demonstration. You aren't telling a story about why the product is durable or high quality; you are just subjecting it to ridiculous extremes.
+      * The Framework: Running the product over with a truck, dropping it from a roof, or submerging it in freezing water.
+      * Why it works: It creates immediate visual shock. It completely breaks the pattern of a standard e-commerce ad by looking more like a stunt, answering the viewer's deepest objections through raw physical evidence.
+SCRIPT:
+9. The Comment Reply (The Meta-Objection)
+Instead of starting with a hook, you start with a screenshot of a skeptical, angry, or questioning comment overlaid on the screen (e.g., "This looks incredibly cheap" or "Does this even work?").
+      * The Framework: You literally just film a 10-second visual response proving that specific comment wrong.
+      * Why it works: It directly attacks the biggest bottleneck in DR—skepticism. By highlighting a negative or doubtful comment, you show absolute confidence, and there's no need to build a narrative because the user's comment is the hook.
+SCRIPT:
+10. The Gamified POV (The Interactive Illusion)
+This treats the video not as a piece of media to watch, but as an interface to interact with. It borrows heavily from video game UI and platform trends.
+      * The Framework: Using overlays like a "Choose Your Fighter" selection screen, a fake iPhone text thread typing out the benefits, or a "Tap to upgrade" visual where the product transforms.
+      * Why it works: It hacks the viewer's muscle memory. Because it looks like a UI or a game, it stops the scroll and keeps their eyes darting around the screen to read the stats or options, completely bypassing traditional ad structures.
+RULES:
+      * WE use 1.25x speed on voice ALWAYS!
+
+
+      * please make sure to create a VERY GOOD hook! Be very CREATIVE!
+
+
+      * do not use brands names or popular names etc in the prompt as it is not right Neither not use sponsors or bad language even “garbage” is a bad language. 
+
+
+      * the script should be a highly engaging one. do not copy that brand copy, be creative, you can use the brand copy as example, but be creative inside the mantra we follow. 
+      * YOU NEED TO TALK DIRECTLY TO THE SPECIFIC HUMAN BEHIND THE SCREEN WITHOUT USING ANY AI GIMICKS, + USE VERY NON GENERIC HOOK BOLD AND STRONG! GOOD SCRIPT = 70% OF VIDEO!
+
+
+      * BAD EXAMPLE OF SCRIPT: “stop scrolling if your kid is obsessed with football, but your bank account is obsessed with saving money! I was honestly so fed up with spending eighty dollars on a single kit, only for it to arrive with wonky stitching or, even worse, looking like a total fake. It’s frustrating when you just want to give them that 'match day' feeling without getting ripped off. I almost gave up and just bought a generic t-shirt, but then I found footyb. It’s a total game-changer. You get 100-percent authentic mystery kits from the world’s biggest leagues at a fraction of the price. The look on my son's face when he opened his first mystery box? Pure magic. He finally feels like a pro, and I finally feel like I won. Don’t settle for fakes. Head to footyb dot com and grab a mystery box before they’re gone!" 
+WHY ITS BAD? VERY GENERIC AI DRIVEN SCRIPT, NO REAL HUMAN:
+
+
+Image ads:
+Direct Response Image Ad Styles
+      * The "Anatomy" / Feature Call-Out
+      * The Native Social "Meme" / UI Mockup
+      * The Bold Testimonial Mashup
+      * The "Reason Why" / Text-Heavy Plain Background
+      * The "Myth vs. Fact" Split
+      * The Note App Screenshot / Founder's Letter
+      * The Product Teardown / Grid View
+      * The POV Unboxing / Delivery
+      * The Press Screenshot / Authority Overlay
+________________
+
+
+Direct Response Text Formulas
+      * P.A.S. (Problem, Agitate, Solution): [Problem] + [Agitate] + [Solution] + [Call to Action]
+      * The Objection Killer: [Acknowledge Core Objection] + [Pivot to Value/Fact] + [Risk Reversal/Guarantee] + [Call to Action]
+      * The "If / Then" Qualifier: [If you are Target Audience/Have Specific Desire] + [Then you need Product/Solution] + [Call to Action]
+      * The Story-Hook Lead: [Pattern Interrupt Hook] + [Brief Struggle] + [The Discovery/Product] + [Call to Action]
+      * A.I.D.A. Framework: [Attention Hook] + [Interest/Fascinating Fact] + [Desire/Benefit] + [Call to Action]
+      * Outcome First: [Ultimate Desired Outcome] + [Mechanism/How It Works] + [Urgency/Offer] + [Call to Action]
+      * Pain First: [Specific Pain Point/Frustration] + [Empathy/Validation Statement] + [The Fix/Product] + [Call to Action]
+      * The Before & After Bridge: [Current Undesired State] + [Future Desired State] + [The Bridge/Product] + [Call to Action]
+      * The "Secret" Reveal: [Bold Claim/Pattern Interrupt] + [The "Enemy"/Status Quo] + [The Secret/Product] + [Call to Action]
+      * Feature to Benefit Translation: [Core Feature] + [So That You Can...] + [Ultimate Benefit] + [Call to Action]
+*can use figma , dedicated app like kie ai or canva. Or others…
+Campaigns and working through meta business suite:
+ How to Work with Facebook (איך עובדים מול פייסבוק)
+Of course the first things we need to do is open a private FB account (if we don’t have one) and then open a meta business suite on top of that + a branded FB page & to design it. Then to open ADS manager and to connect and create a tracking pixel.
+
+
+Top Level (The Hub):
+      * Business Manager (מנהל עסקים)
+From the Business Manager, the workflow splits into three main branches:
+Left Branch (Paid Advertising):
+      * Ad Account (חשבון מודעות)
+      * Points to: Creating Campaigns (יצירת קמפיינים)
+Middle Branch (Organic Presence):
+      * Facebook Business Page (עמוד פייסבוק עסקי)
+      * Points to: Uploading posts, interacting with the audience (מעלים פוסטים, יוצרים קשר עם הקהל)
+Right Branch (Data & Tracking):
+      * Pixel (tracking visitors on your website) (פיקסל (מעקב אחר הגולשים באתר שלכם))
+      * Points to: Tracking visitor behavior (website visits, add to cart, reaching checkout, and purchases) (עוקבים אחרי התנהגות הגולשים (ביקורים באתר, הוספות לעגלה, הגעה לצ'ק-אאוט ורכישות))
+The Convergence:
+      * All three branches above (Creating Campaigns, Interacting with the audience, and Tracking behavior) point down to:
+      * Website Traffic / Entrances to the site (כניסות לאתר)
+Final Goal:
+      * Website Traffic points down to:
+      * Sales. (מכירות.)
+________________
+
+
+This diagram illustrates the fundamental architecture of the Meta (Facebook) marketing ecosystem and how its different components work together to generate revenue.
+Here is the breakdown of the logic:
+      1. The Umbrella (Business Manager): Everything starts at the Meta Business Manager level. It acts as the central hub that houses and connects all the separate assets (pages, ad accounts, pixels).
+      2. The Three Pillars of Strategy:
+      * Paid Media (Left): Creating paid campaigns via the Ad Account to push traffic.
+      * Organic/Social (Middle): Building brand awareness and community trust through organic posts on the Business Page.
+      * Data & Tracking (Right): Using the Meta Pixel installed on the e-commerce site to gather data on what users do (viewing products, adding to cart, buying). This feeds data back to the Ad Account to optimize campaigns and build retargeting audiences.
+      3. The Funnel: The overarching goal of all three pillars—paid ads, organic social engagement, and data-driven retargeting—is to drive qualified users out of the Facebook ecosystem and onto the external landing page or e-commerce store (Website Traffic).
+      4. The Ultimate Goal: Once users are on the website, the final objective of the entire structure is to convert that traffic into Sales.
+
+
+Campaigns:
+      1. *3-2-2 campaign\ two-step Facebook/Meta Ads campaigns
+Phase 1: Testing (Left Side of Diagram)
+      * Budget Rule: Initial Budget: 25 NIS per ad * number of ads * 3 days.
+      * Campaign Level: ABO Campaign (Testing Campaign) - Budget is set at the Ad Set level.
+      * Ad Set Level: Splits into multiple Ad Sets (Ad Set 1, Ad Set 2, Ad Set 3).
+      * Ad Level: Each Ad Set contains 5 pieces of content/creatives (5 תכנים).
+Phase 2: The Transition (Middle of Diagram)
+      * Action/Rule: "Creatives that worked well are duplicated to the main CBO campaign." (Arrows point from the ABO Ad Sets to this rule, and then an arrow points from this rule to the scaling Ad Sets on the right).
+Phase 3: Scaling (Right Side of Diagram)
+      * Budget Rule: Initial Budget: 100 NIS daily * 3 days.
+      * Campaign Level: CBO Campaign (Main Campaign) - Budget is set at the Campaign level.
+      * Ad Set 1: Contains 3 videos and 2 images.
+      * Ad Sets 2, 3, 4 (Scale): These are populated with the winning creatives from the testing phase. Each of these Ad Sets contains 5 ads.
+________________
+
+
+Explanation of the Strategy (Context for Claude)
+This diagram outlines a classic two-step Facebook/Meta Ads scaling strategy:
+      1. The Testing Phase (ABO - Ad Set Budget Optimization): The media buyer uses ABO to force the system to spend money equally across different audiences (Ad Sets). The budget formula (25 NIS * number of ads * 3 days) ensures that every single creative gets enough budget and time to prove if it works. If they used CBO here, Facebook might spend all the money on one creative and ignore the rest. The goal here is purely to find winning creatives.
+      2. The Extraction: After 3 days, they review the data. Any creative (out of the 5 per Ad Set) that met their KPIs is considered a "winner."
+      3. The Scaling Phase (CBO - Campaign Budget Optimization): The winning creatives are duplicated and moved into a new, higher-budget CBO campaign. Here, the budget is controlled at the top level (100 NIS/day), allowing Facebook's algorithm to freely distribute the money to whichever Ad Set is performing the best in real-time. Ad Set 1 seems to be a baseline (3 videos, 2 images), while Ad Sets 2, 3, and 4 are specifically built using the proven, de-risked creatives found during the ABO testing phase.
+
+
+2). Facebook Dynamic Product Ads (DPAs) \ Advantage+ Catalog Ads
+Dynamic Product Ads (DPA) is an automated campaign type where Meta acts as the media buyer and creative designer. You give Meta a "Catalog" (a massive spreadsheet of all your products, prices, images, and URLs) and a dynamic ad template. Meta’s algorithm automatically pairs the exact right product from that catalog with the exact right user based on their internet behavior.
+Simprosys (usually referring to the Simprosys Google Shopping Feed app for Shopify/WooCommerce) is the bridge. It automatically pulls all the data from your website backend and translates it into a perfectly formatted, constantly updating data feed (XML/CSV) that Meta, Google, or TikTok can read.
+When to Use DPAs (Advantage+ Catalog Ads)
+DPAs are a mandatory part of the ecosystem for large inventory stores. You use them in two primary scenarios:
+      * Bottom of Funnel (Retargeting): This is the highest-ROI use case. If a user clicks on your site, looks at a specific away kit, adds it to their cart, but leaves without buying, the DPA will automatically "follow" them onto Facebook and Instagram. It will show them the exact kit they abandoned, maybe alongside a carousel of similar items, with copy saying, "Did you forget something?"
+      * Top of Funnel (Broad Prospecting): You target a broad audience (e.g., millions of football fans globally). Meta’s AI knows that User A has been reading articles about the Portugal national team, so it automatically pulls a Portugal kit from your Simprosys feed and shows it to them, even if they have never visited your website before.
+You create a new campaign in Ads Manager and select the "Sales" objective, turning on the catalog feature.
+      * Instead of uploading an image or video, you create a Dynamic Template.
+      * You use dynamic placeholders in the ad copy. For example:
+Get your [Product Name] for just [Price]! Available up to 4XL.
+      * Meta's machine learning takes over, generating thousands of personalized ads in real-time for different users based on their likelihood to convert.
+3. The new META ADS campaigns way (the nitos method)
+The Right Ad Launch Structure
+         * Step 1: Campaign Level
+         * Conversion Campaign
+
+
+         * Step 2: Ad Set Level (The Campaign splits into these 3 separate Ad Sets)
+         * Ad set 1: Interests A+ Auto Placements
+         * Ad set 2: Lookalikes 1% A+ Auto Placements
+         * Ad set 3: Broad A+ Auto Placements
+
+
+         * Step 3: Ad Level (Each of the 3 Ad Sets contains this exact creative structure)
+         * 5-10 ads
+         * 5 images
+         * 1 copy
+         * 2 headline variations
+
+
+
+
+TESTING ADS:
+YOU started by doing 5$ a day, when to decide whether to continue or stop?
+
+
+By 3 parameters (KPI’s): clicks, ROAS & atc. 
+By day one we should aim for 3 clicks 
+day two for 3 ATC
+day three for roas 1.8 + (we check ads not by a one day but by a week at least)
+
+
+When to go on scale? Scale is simply widening and increasing the budget.
+
+
+The minimum to go on scale is 1.7x of our break even. Like if our BE is 1.5 we then want our ROAS to be 1.7x of the 1.5 to be able to scale (1.7x1.5= 2.55 minimum).
+Scale is simple= every three days we multiplayer the budget up to 500$ maximum. 
+When we hit the 500$ threshold we do every 3 days +20% our budget. 
+In case we are no longer profitable after two weeks we will want to look insight our ads, we take a look for 4 days ago and we want to see the metrics. 
+In that case we take the same vid that works and tweak him a little bit by changing the hook or voice to just relive the video. We always do it in 1200am!!
+If 4 days later after tweaking you are not profitable = close campaign and redo it with new creatives.
+
+
+From 100 people in website we need to have at least 5 or 6 ATC in our website
+uCTR should be 3% or above is good.
+
+
+Different Types Of Scaling.
+         * Vertical Scaling.
+         * Bump up budget 20% every 48 hours.
+         * Bump up budget 10% every day.
+         * Audiences Scaling.
+         * Try Lookalike Audiences of Early events.
+         * Broader targeting / No targeting.
+         * Bid Scaling.
+         * Target Cost and Target Roas
+
+
+
+
+         * An act we can do to get better metrics is simply to create new pages of non branded ones like “jayden browen” or “ballers recommendation” like general non branded ones create more authenticity and tend to work better. 
+
+
+         * Retargeting:
+Retargeting sits under catalog sales campaigns and are targeted to BOF people, we look at 1 7 14 and 20 days ago and we target people whom VC + ATC (1 , 7 , 14) and only ATC (20) and we usually give discount or any incentive because they already know us.
+For starters it is recommended to use at least 7 days if not 14!
+
+
+         * If we have Creatives that worked well in the past and gave us a lot of ijnfo and a lot of revenue , and we see that they are starting to not work , if we notice theres a a bunch of creatives that didnt worked out in the past 2 - 3 week , we can revive them by just creating a new CBO campaign with those creatives and test.
+
+
+         * Our tests of campaign can fail due to mainly 4 things: our creatives , website ,product , offer. We want to try to understand each time what didnt worked, we do it by reading our metrics and deciding , its not 1+1=2 , it can be all 4 options or only 1.
+Main Title: How to Analyze the Test Data (איך לנתח את הנתונים של הטסט)
+Green Box: Good Test: (טסט טוב:)
+         * At least one purchase (לפחות רכישה אחת)
+         * Adds to cart and reaching checkout (הוספות לעגלה והגעה לצ'קאוט)
+         * Contacting us on WhatsApp and by phone, customers are interested and asking about the product (יוצרים איתנו קשר בוואצאפ ובטלפון, לקוחות מתעניינים ושואלים על המוצר)
+         * Likes, comments, shares on our ads (לייקים, תגובות, שיתופים למודעות שלנו)
+Red Box: Bad Test: (טסט לא טוב:)
+         * No purchases (אין רכישות)
+         * No adds to cart or 1-2 accidental ones (אין הוספות לעגלה או 1-2 מקריות)
+         * No one is contacting us (לא יוצרים איתנו קשר)
+         * No interaction with our ads (Note: The last line is partially cut off in the image, but it clearly reads: אין אינטרקציה עם המודעות שלנו)
+________________
+
+
+Explanation of the Strategy (Context for Claude)
+This slide acts as the KPI (Key Performance Indicator) evaluation rubric for the initial testing phase (the ABO campaign detailed in the first diagram). After letting the ads run for 3 days, the media buyer uses these criteria to decide which creatives to "kill" and which to scale.
+Here is the breakdown of the logic:
+         * Full-Funnel Indicators: A "Good Test" doesn't strictly rely on immediate profitability. It looks for strong buying intent across the whole funnel—from top-of-funnel social proof (likes/shares), to mid-funnel consideration (WhatsApp messages/questions), down to bottom-funnel actions (Add to Cart, Initiate Checkout, and actual Purchases).
+         * Defining a "Winner": If an ad shows these positive signals, it is deemed a winner and qualifies to be moved into the high-budget CBO scaling campaign.
+         * Defining a "Loser": A "Bad Test" is characterized by "crickets." If there are no sales, zero or negligible intent (accidental clicks), and no social engagement, the creative is killed. It failed to resonate with the audien
+
+
+Metrics
+Delivery, Reach, Frequency, Impressions, CPM, Unique Outbound Clicks, Cost Per UOC., UOC CTR., Budget., Amount Spent., Landing Page Views., Cost Per LPV., Leads., Cost Per Lead., Purchases., Cost Per Purchase., ROAS
+
+
+
+
+Guide: Duplicating Ads Using Post ID
+Why do we duplicate ads using Post ID?
+Using the Post ID is critical when transitioning from the testing phase to the scaling phase. The main reasons for this are:
+         1. Preserving Social Proof: When duplicating an ad via the ID, all the likes, comments, and shares accumulated on the original ad transfer with it. An ad with existing interactions looks more credible to new customers and converts better.
+         2. Preserving Data: Facebook has already "learned" this ad. Using the same ID allows the ad to continue running from the same optimization point, instead of starting the Learning Phase from scratch.
+         3. Working in Parallel: Running the exact same ad in both the testing campaign and the main "winners" campaign simultaneously. If it stops working in one of them, simply turn it off there, without affecting the other placement.
+Execution Steps:
+Step 1: Extracting the ID from the winning ad
+         1. Go into the Ads Manager to your testing campaign.
+         2. Select the winning ad and click Edit.
+         3. Click the Preview button (square icon with an arrow) on the top right.
+         4. Select Facebook Post with Comments.
+         5. In the browser's address bar (URL), copy the sequence of numbers that appears at the end (after the /posts/). This is the Post ID (what is marked with a green line underneath).
+Step 2: Preparing the Ad Set in the Main Campaign
+         1. Go to the main campaign (Big Campaign).
+         2. Duplicate the existing Ad Set (Quick Duplicate).
+         3. Update the name of the new Ad Set (e.g., "Ad Set 2") and add a date.
+         4. Delete the old ads within the new Ad Set and leave only one ad.
+Step 3: Embedding the Post ID
+         1. In the ad edit level, under Ad Setup, select Use Existing Post.
+         2. Click on the Enter Post ID link.
+         3. Paste the number you copied and click the checkmark (V) to confirm.
+
+
+
+
+
+
+Conclusions About Creatives
+
+
+Most of your creatives won’t work, and that’s okay.
+A small portion of them will work for several days and then stop working
+An even smaller portion will last for a few weeks
+The smallest portion will last for a month or more
+
+
+Make sure to Put everything in one folder in the computer in terms of creatives and make sure we have a written name, that means every package of 5 creatives needs to be written in one folder with date.
+In one campaign adset we need to write date and not blend products in the same campaign.
+
+
+It is important to put product page links or custom landing pages in the ad.
+
+
+In enhancement on the FB page we need to make sure we choose the three below but not choose the two in up.
+
+
+Need to put date to the ads itself too.
+
+
+In regards adsets campaign we will choose price per ad obviously
+
+
+
+
+THE VIRAL LOOP
+This is the "FootyB Holy Grail" loop. It’s a self-sustaining marketing flywheel designed to ensure that for every 100 kits you sell, you get the content and data needed to sell the next 500 automatically.
+What It Does (The Goal)
+Normally, a business has to manually create ads. This loop automates the creation of your best ads and refines your targeting every time a customer leaves a review. It turns your happy customers into your marketing department.
+________________
+
+
+Phase 1: The "Bait" (Content Generation)
+We use Judge.me to act as a trap that catches high-quality content.
+         * The Setup: A review request is sent 14 days after fulfillment.
+         * The Incentive: We offer a 7% discount (The "Bribe") specifically for reviews that include a photo or video.
+         * The Legal Base: We add a required checkbox: "I grant FootyB permission to use this media for marketing." This makes the loop legally "bulletproof."
+________________
+
+
+Phase 2: The "Brain" (The Filter)
+We want to separate the "Super-Fans" from everyone else so we don't feed the algorithm bad data.
+         * The Setup: A dynamic segment titled "UGC VIP - Meta Sync."
+         * The Logic:
+         * Condition 1: Must have submitted a review in the last 90 days.
+         * Condition 2: Rating must be exactly 5 Stars.
+         * Condition 3: Must have Images or Videos attached.
+         * The Result: You now have a list of your "Perfect Customers"—the ones who love the product and look good in it.
+________________
+
+
+Phase 3: The "Bridge" (The Technical Handshake)
+This is where the automation happens.
+         * The Setup: We want to segment and have "Facebook Custom Audience Sync."
+         * The Action: "teleports" that list of 5-star reviewers directly into your Meta Ads Manager.
+         * The Result: Your Meta account now has a live, auto-updating list of your best customers. As new reviews come in, this list grows without you doing anything.
+________________
+
+
+Phase 4: The "Amplifier" (The Scaling)
+Now we tell Meta to find "twins" of these people.
+         * The Setup: Create a 1% Lookalike Audience in Meta based on that synced list.
+         * The Logic: Meta looks at the 500 people who loved your kits and finds the 2 million people in your target countries (US, Europe, Israel) who share their exact DNA, interests, and buying habits.
+________________
+
+
+Phase 5: Closing the Loop (The Ads)
+The final step is the most powerful because it uses Social Proof instead of "Salesy" talk.
+         * The Ad Creative: You download the actual photo/video the customer submitted in Step 1.
+         * The Copy: Use the customer's actual review text as the headline (e.g., "Best quality retro kit I've ever owned!").
+         * The Target: Show this ad to the 1% Lookalike Audience.
+________________
+
+
+Why It’s "The Holy Grail"
+         1. Low CPA: People trust other customers more than they trust you. "Real" photos convert better than professional ones.
+         2. Auto-Updating: As your customer tastes change, the Lookalike Audience updates automatically because the "Seed" data is fresh.
+         3. Infinite Content: You never have to film an ad again; your customers are filming them for you.
+ Automating "Wall of Fame" IG Highlights
+You want to show potential buyers that "real people" are happy. You can automate the posting of these reviews to your Instagram Stories, which you then save to a "Wall of Fame" Highlight.
+
+
+
+
+MUST CHECK THOSE OUT!:
+
+
+Ads creative examples - 
+https://hail-pond-0fc.notion.site/ebae3c1aaea34b8f9c85eaaa514d7f61?v=30f942daa302486d8c8d90731310b315
+ Hook Ideas Template For Meta Ads
+
+
+https://www.facebook.com/ads/library/?active_status=active&ad_type=all&country=US&is_targeted_country=false&media_type=all&search_type=page&sort_data[mode]=total_impressions&sort_data[direction]=desc&view_all_page_id=107585658730958
