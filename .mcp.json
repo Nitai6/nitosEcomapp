@@ -1,0 +1,219 @@
+{
+  "_comment": "Project-level MCP servers for paidads. Owner: fill state/secrets/.env then run `claude mcp list` to verify connections. Claude Code auto-loads this file when launched in this directory.",
+  "mcpServers": {
+
+    "supabase": {
+      "command": "npx",
+      "args": ["-y", "@supabase/mcp-server-supabase@latest"],
+      "env": {
+        "SUPABASE_PROJECT_URL": "${SUPABASE_PROJECT_URL}",
+        "SUPABASE_SERVICE_ROLE_KEY": "${SUPABASE_SERVICE_ROLE_KEY}"
+      }
+    },
+
+    "shopify-storefront": {
+      "command": "npx",
+      "args": ["-y", "@shopify/storefront-mcp@latest"],
+      "env": {
+        "SHOPIFY_STORE_DOMAIN": "${SHOPIFY_STORE_DOMAIN}",
+        "SHOPIFY_STOREFRONT_ACCESS_TOKEN": "${SHOPIFY_STOREFRONT_ACCESS_TOKEN}",
+        "SHOPIFY_ADMIN_ACCESS_TOKEN": "${SHOPIFY_ADMIN_ACCESS_TOKEN}"
+      }
+    },
+
+    "meta-ads-pipeboard": {
+      "command": "npx",
+      "args": ["-y", "@pipeboard/mcp-server@latest"],
+      "env": {
+        "PIPEBOARD_API_KEY": "${PIPEBOARD_API_KEY}"
+      }
+    },
+
+    "dataforseo": {
+      "command": "npx",
+      "args": ["-y", "dataforseo-mcp-server"],
+      "env": {
+        "DATAFORSEO_USERNAME": "${DATAFORSEO_LOGIN}",
+        "DATAFORSEO_PASSWORD": "${DATAFORSEO_PASSWORD}"
+      }
+    },
+
+    "gsc": {
+      "command": "npx",
+      "args": ["-y", "mcp-gsc"],
+      "env": {
+        "GSC_OAUTH_CLIENT_ID": "${GSC_OAUTH_CLIENT_ID}",
+        "GSC_OAUTH_CLIENT_SECRET": "${GSC_OAUTH_CLIENT_SECRET}",
+        "GSC_REFRESH_TOKEN": "${GSC_REFRESH_TOKEN}"
+      }
+    },
+
+    "mailjet": {
+      "command": "npx",
+      "args": ["-y", "mailjet-mcp-server"],
+      "env": {
+        "MAILJET_API_KEY": "${MAILJET_API_KEY}",
+        "MAILJET_API_SECRET": "${MAILJET_API_SECRET}"
+      }
+    },
+
+    "gmail": {
+      "command": "npx",
+      "args": ["-y", "@gongrzhe/server-gmail-autoauth-mcp"],
+      "env": {
+        "GMAIL_OAUTH_CLIENT_ID": "${GMAIL_OAUTH_CLIENT_ID}",
+        "GMAIL_OAUTH_CLIENT_SECRET": "${GMAIL_OAUTH_CLIENT_SECRET}",
+        "GMAIL_REFRESH_TOKEN": "${GMAIL_REFRESH_TOKEN}"
+      }
+    },
+
+    "telegram": {
+      "command": "npx",
+      "args": ["-y", "telegram-mcp-server"],
+      "env": {
+        "TELEGRAM_BOT_TOKEN": "${TELEGRAM_BOT_TOKEN}",
+        "TELEGRAM_OWNER_CHAT_ID": "${TELEGRAM_OWNER_CHAT_ID}"
+      }
+    },
+
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      }
+    },
+
+    "leumi-open-banking": {
+      "command": "node",
+      "args": ["./mcp-servers/leumi-open-banking/index.js"],
+      "env": {
+        "LEUMI_CLIENT_ID": "${LEUMI_OPEN_BANKING_CLIENT_ID}",
+        "LEUMI_CLIENT_SECRET": "${LEUMI_OPEN_BANKING_CLIENT_SECRET}",
+        "LEUMI_REDIRECT_URI": "${LEUMI_OPEN_BANKING_REDIRECT_URI}"
+      },
+      "_note": "Custom-built MCP wrapper — Bank Leumi has no public MCP. Stub at mcp-servers/leumi-open-banking/ — owner builds against https://www.leumiopenbanking.co.il/apis"
+    },
+
+    "higgsfield-playwright": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {
+        "HIGGSFIELD_EMAIL": "${HIGGSFIELD_EMAIL}",
+        "HIGGSFIELD_PASSWORD": "${HIGGSFIELD_PASSWORD}"
+      },
+      "_note": "Higgsfield has no public MCP. Use the generic Playwright/Puppeteer MCP — wrappers in skills automate login + GPT-image 2.0 + Seedance 2.0 routes via Playwright scripts."
+    },
+
+    "submagic": {
+      "command": "node",
+      "args": ["./mcp-servers/submagic/index.js"],
+      "env": {
+        "SUBMAGIC_API_KEY": "${SUBMAGIC_API_KEY}"
+      },
+      "_note": "Custom thin REST wrapper — Submagic has no official MCP yet. ROTATE the leaked key first."
+    },
+
+    "hyperframes": {
+      "command": "npx",
+      "args": ["-y", "@heygen/hyperframes-mcp"],
+      "env": {
+        "HEYGEN_API_KEY": "${HEYGEN_API_KEY}"
+      }
+    },
+
+    "instagram-graph": {
+      "command": "npx",
+      "args": ["-y", "instagram-graph-mcp"],
+      "env": {
+        "INSTAGRAM_GRAPH_ACCESS_TOKEN": "${INSTAGRAM_GRAPH_ACCESS_TOKEN}",
+        "INSTAGRAM_BUSINESS_ACCOUNT_ID": "${INSTAGRAM_BUSINESS_ACCOUNT_ID}"
+      }
+    },
+
+    "tiktok": {
+      "command": "npx",
+      "args": ["-y", "tiktok-mcp"],
+      "env": {
+        "TIKTOK_MARKETING_ACCESS_TOKEN": "${TIKTOK_MARKETING_ACCESS_TOKEN}",
+        "TIKTOK_CONTENT_ACCESS_TOKEN": "${TIKTOK_CONTENT_ACCESS_TOKEN}",
+        "TIKTOK_ADVERTISER_ID": "${TIKTOK_ADVERTISER_ID}"
+      }
+    },
+
+    "pinterest": {
+      "command": "npx",
+      "args": ["-y", "pinterest-mcp"],
+      "env": {
+        "PINTEREST_ACCESS_TOKEN": "${PINTEREST_ACCESS_TOKEN}",
+        "PINTEREST_AD_ACCOUNT_ID": "${PINTEREST_AD_ACCOUNT_ID}"
+      }
+    },
+
+    "youtube-data": {
+      "command": "npx",
+      "args": ["-y", "youtube-data-mcp-server"],
+      "env": {
+        "YOUTUBE_OAUTH_CLIENT_ID": "${YOUTUBE_OAUTH_CLIENT_ID}",
+        "YOUTUBE_OAUTH_CLIENT_SECRET": "${YOUTUBE_OAUTH_CLIENT_SECRET}",
+        "YOUTUBE_REFRESH_TOKEN": "${YOUTUBE_REFRESH_TOKEN}"
+      }
+    },
+
+    "apify": {
+      "command": "npx",
+      "args": ["-y", "@apify/mcp-server"],
+      "env": {
+        "APIFY_API_TOKEN": "${APIFY_API_TOKEN}"
+      }
+    },
+
+    "posthog": {
+      "command": "npx",
+      "args": ["-y", "@posthog/mcp-server"],
+      "env": {
+        "POSTHOG_PROJECT_API_KEY": "${POSTHOG_PROJECT_API_KEY}",
+        "POSTHOG_HOST": "${POSTHOG_HOST}"
+      }
+    },
+
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "@sentry/mcp-server"],
+      "env": {
+        "SENTRY_AUTH_TOKEN": "${SENTRY_AUTH_TOKEN}",
+        "SENTRY_ORG": "${SENTRY_ORG}",
+        "SENTRY_PROJECT": "${SENTRY_PROJECT}"
+      }
+    },
+
+    "elevenlabs": {
+      "command": "npx",
+      "args": ["-y", "elevenlabs-mcp"],
+      "env": {
+        "ELEVENLABS_API_KEY": "${ELEVENLABS_API_KEY}"
+      }
+    },
+
+    "google-docs": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-docs"],
+      "env": {
+        "GOOGLE_OAUTH_CLIENT_ID": "${GOOGLE_OAUTH_CLIENT_ID}",
+        "GOOGLE_OAUTH_CLIENT_SECRET": "${GOOGLE_OAUTH_CLIENT_SECRET}",
+        "GOOGLE_OAUTH_REFRESH_TOKEN": "${GOOGLE_OAUTH_REFRESH_TOKEN}"
+      }
+    },
+
+    "hostinger": {
+      "command": "node",
+      "args": ["./mcp-servers/hostinger/index.js"],
+      "env": {
+        "HOSTINGER_API_TOKEN": "${HOSTINGER_API_TOKEN}"
+      },
+      "_note": "Custom thin wrapper — Hostinger has no official MCP. Used for DNS / domain ops only."
+    }
+
+  }
+}

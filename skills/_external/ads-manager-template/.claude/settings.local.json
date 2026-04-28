@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(/.claude/skills/ad-upload/**)",
+      "Edit(/.claude/skills/brand-voice/**)",
+      "Edit(/.claude/skills/utm-params/**)",
+      "Edit(/.claude/skills/ad-copy/**)",
+      "Bash(python3 -c \":*)"
+    ],
+    "additionalDirectories": [
+      "/Users/tyler/Developer/Claude-Code/ads-manager-template/.claude/skills/utm-params"
+    ]
+  }
+}

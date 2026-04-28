@@ -1,43 +1,51 @@
-# secrets
+# ─── SECRETS — NEVER COMMIT ───────────────────
+state/secrets/
+!state/secrets/.env.template
 .env
-.env.*
-!.env.example
+!.env.template
+.env.local
+.env.*.local
 *.key
 *.pem
 credentials.json
+*-tokens.json
 
-# OS
+# ─── Runtime noise ───────────────────────────
+state/_logs/
+state/**/runs/
+state/**/_cache/
+state/**/raw/
+*.log
+runs/
+
+# ─── OS junk ─────────────────────────────────
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# editor
+# ─── Editor ──────────────────────────────────
 .vscode/
 .idea/
 *.swp
 
-# state / runtime artifacts
-state/
-runs/
-*.log
-
-# private knowledge (keep in a separate private repo)
-references/my-*.md
-skills/**/references/my-*.md
-
-# python
+# ─── Python ──────────────────────────────────
 __pycache__/
 *.pyc
 .venv/
 venv/
 
-# node
+# ─── Node ────────────────────────────────────
 node_modules/
 
-# Next.js
+# ─── Next.js ─────────────────────────────────
 .next/
 out/
 build/
 .vercel/
 next-env.d.ts
 
-.vercel
+# ─── NOTES ───────────────────────────────────
+# state/branding/, state/market-research/, state/avatar-builder/, etc.
+#   ARE pushed (small JSON, needed on new laptop).
+# skills/**/references/my-*.md ARE pushed (the owner's bible — without these, skills are placeholders).
+# Repo MUST stay PRIVATE — it contains brand strategy + skill playbooks (competitive IP).

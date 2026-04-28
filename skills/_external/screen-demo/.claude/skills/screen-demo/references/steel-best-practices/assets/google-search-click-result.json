@@ -1,0 +1,75 @@
+{
+  "viewport": { "width": 1920, "height": 1080 },
+  "actions": [
+    {
+      "action": "navigate",
+      "url": "https://www.google.com",
+      "wait": 3000,
+      "label": "Google homepage"
+    },
+    {
+      "action": "evaluate",
+      "script": "document.querySelector('button[id*=\"agree\"], button[id*=\"accept\"], form[action*=\"consent\"] button')?.click()",
+      "wait": 1500,
+      "label": "Dismiss consent dialog (if present)"
+    },
+    {
+      "action": "click",
+      "selector": "textarea[name='q'], input[name='q']",
+      "force": true,
+      "wait": 500,
+      "label": "Focus search bar"
+    },
+    {
+      "action": "type",
+      "selector": "textarea[name='q'], input[name='q']",
+      "text": "best coffee shops san francisco",
+      "force": true,
+      "wait": 2000,
+      "label": "Type search query"
+    },
+    {
+      "action": "press",
+      "key": "Escape",
+      "wait": 500,
+      "label": "Dismiss autocomplete"
+    },
+    {
+      "action": "press",
+      "key": "Enter",
+      "wait": 5000,
+      "label": "Submit search and wait for results"
+    },
+    {
+      "action": "scroll",
+      "y": 300,
+      "wait": 1500,
+      "label": "Scroll to see results"
+    },
+    {
+      "action": "click",
+      "selector": "#rso h3",
+      "force": true,
+      "nth": 0,
+      "wait": 4000,
+      "label": "Click first organic result"
+    },
+    {
+      "action": "scroll",
+      "y": 500,
+      "wait": 2000,
+      "label": "Scroll on destination page"
+    },
+    {
+      "action": "scroll",
+      "y": -500,
+      "wait": 2000,
+      "label": "Scroll back up"
+    },
+    {
+      "action": "wait",
+      "wait": 2000,
+      "label": "Final pause"
+    }
+  ]
+}

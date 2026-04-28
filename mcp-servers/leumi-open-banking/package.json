@@ -1,0 +1,11 @@
+{
+  "name": "leumi-open-banking-mcp",
+  "version": "0.1.0",
+  "description": "MCP wrapper around Bank Leumi Open Banking APIs (PSD2-style) for paidads finance-il agent",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}

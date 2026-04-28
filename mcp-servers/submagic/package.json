@@ -1,0 +1,11 @@
+{
+  "name": "submagic-mcp",
+  "version": "0.1.0",
+  "description": "MCP wrapper around Submagic REST API for paidads",
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}
